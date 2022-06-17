@@ -1,0 +1,68 @@
+.icons-picker-footer {
+  color: $black;
+  display: flex;
+  font-weight: 300;
+  justify-content: space-between;
+  width: 100%;
+
+  .select-all-icons {
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin: 15px 25px;
+
+    i {
+      padding-left: 6px;
+      vertical-align: auto;
+    }
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .deselect-all-icons {
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin: 15px 25px;
+
+    i {
+      padding-left: 3px;
+      vertical-align: auto;
+    }
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .generate-div {
+    display: block;
+    float: right;
+    margin-top: 10px;
+
+    span {
+      display: inline;
+      padding: 10px;
+    }
+
+    button {
+      margin-right: $m;
+      outline: none;
+    }
+  }
+
+  &-upload {
+    align-items: center;
+    display: flex;
+
+    p {
+      margin-right: 10px;
+    }
+  }
+
+  @media screen and (max-width: $mobile-max) {
+    flex-direction: column;
+  }
+}

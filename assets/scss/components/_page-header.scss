@@ -1,0 +1,62 @@
+$page-header-illustration: url('../../images/page-header-illustrations.png')
+  center right no-repeat #eeeff1;
+
+.page-header {
+  align-items: center;
+  background: $page-header-illustration;
+  color: $black;
+  display: flex;
+  padding: $xxl 0;
+  position: sticky;
+  top: 55px;
+  transition: all 0.3s ease-out;
+  width: 100%;
+  z-index: 10;
+
+  @media (max-width: $mobile-max) {
+    padding: 0;
+  }
+
+  &-small {
+    min-height: 8vh;
+  }
+
+  &-medium {
+    height: 30vh;
+  }
+
+  &-wrapper {
+    background-color: #fff;
+    width: 100%;
+
+    .container {
+      padding: $l;
+    }
+  }
+
+  h1 {
+    margin-bottom: $xl;
+
+    @media (max-width: $mobile-max) {
+      margin-bottom: $s;
+    }
+  }
+
+  &-hide-title {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      display: none;
+    }
+
+    .icons-control {
+      padding: 0;
+    }
+  }
+}
+
+.page-header-simple {
+  padding: $xxl 0;
+}

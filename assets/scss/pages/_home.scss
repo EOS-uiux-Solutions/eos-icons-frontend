@@ -1,0 +1,73 @@
+.gray-bg {
+  background-color: #f7f9fc;
+}
+
+.brands {
+  height: 50px;
+  padding: $xl;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.search-input-label {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.icons-control {
+  align-items: center;
+  display: flex;
+
+  &-search {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 60%;
+
+    i {
+      color: $lightest-gray;
+      position: absolute;
+      top: 5px;
+    }
+
+    input.search-input {
+      border-bottom: 1px solid $dark-gray;
+      border-radius: 0;
+      padding-left: 25px;
+      width: 50%;
+    }
+  }
+
+  &-dynamic {
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+
+    @media (max-width: $mobile-max) {
+      display: none;
+    }
+  }
+
+  &-toggle {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media screen and (max-width: $mobile-max) {
+    flex-direction: column;
+
+    input.search-input,
+    .icons-control-search {
+      width: 100%;
+    }
+  }
+}

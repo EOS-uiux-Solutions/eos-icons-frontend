@@ -1,0 +1,54 @@
+select {
+  appearance: none;
+}
+
+.category-filter {
+  align-items: center;
+  display: flex;
+  margin-left: $l;
+
+  label {
+    font-weight: bold;
+  }
+
+  select {
+    margin: 0;
+    margin-left: $m;
+  }
+}
+
+/* Select css */
+.custom-select {
+  background: $eos-select-bg-active;
+  background-color: transparent;
+  background-size: $eos-select-bg-size;
+  border: 1px solid $secondary;
+  border-radius: 10px;
+  color: $eos-select-txt-color;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: $eos-select-font;
+  font-weight: 700;
+  padding: $eos-select-padding;
+  text-transform: capitalize;
+  width: 100%;
+
+  option {
+    font-weight: $eos-select-option-font-weight;
+    padding: $eos-select-option-padding;
+  }
+
+  &:focus {
+    border-color: $secondary;
+    outline: 0;
+  }
+
+  &:disabled {
+    background: $eos-select-bg-disabled;
+    cursor: not-allowed;
+  }
+
+  &.disabled {
+    @extend .disabled;
+  }
+}

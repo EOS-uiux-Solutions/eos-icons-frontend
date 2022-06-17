@@ -1,0 +1,56 @@
+.docs {
+  .tabs {
+    margin-top: -33px;
+  }
+
+  .cta-installing {
+    margin-top: 0.67em;
+  }
+
+  img {
+    max-width: 619px;
+  }
+
+  .docs-header {
+    &-tools {
+      @extend .flex;
+      margin-top: $m;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    .flex {
+      justify-content: space-between;
+
+      @media (max-width: $mobile-max) {
+        display: none;
+      }
+    }
+
+    @media (max-width: $mobile-max) {
+      display: inline;
+    }
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .line-edit {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .resp-link-edit {
+    overflow: scroll;
+  }
+
+  .onyour-img-edit {
+    width: 100%;
+  }
+}
