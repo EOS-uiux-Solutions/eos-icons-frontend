@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import AppContext from '../utils/AppContext'
+import { AppContext } from '../utils/AppContext'
 
 export const CategorySelector = ({ disabled }) => {
   const { state, dispatch } = useContext(AppContext)

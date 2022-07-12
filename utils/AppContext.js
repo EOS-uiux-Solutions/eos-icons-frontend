@@ -1,5 +1,14 @@
-import { createContext } from 'react'
+import React, { createContext, useReducer } from 'react'
+import { iconsReducer, eosIconsState } from '../utils/EosIcons.store.js'
 
-const AppContext = createContext()
+export const AppContext = createContext()
 
-export default AppContext
+export const AppWrapper = ({ children }) => {
+	const [state, dispatch] = useReducer(iconsReducer, eosIconsState);
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>
+  )
+}
+
+
+

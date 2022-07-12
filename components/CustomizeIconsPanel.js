@@ -7,7 +7,7 @@ import ThankYou from './ThankYou'
 import IconEditor from './IconEditor'
 import axios from 'axios'
 import AppContext from '../utils/AppContext'
-import { ICON_PICKER_API_URL } from '../config.json'
+import ICON_PICKER_API_URL  from '../config.json'
 
 const sendData = async (params) => {
   const { url, payload } = params
@@ -141,7 +141,7 @@ const search = (file, dispatch) => {
         data = iconsArray.extended_icons
       return dispatch({
         type: 'UPLOAD_PREVIOUS_SELECTION',
-        data: data
+        data
       })
     } catch (error) {
       alert('JSON file seems to be incorrect')

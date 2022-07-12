@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
-import AppContext from '../utils/AppContext'
+import { AppContext } from '../utils/AppContext'
 import Button from './Button'
 import IconEditor from './IconEditor'
 import toast, { Toaster } from 'react-hot-toast'
@@ -32,8 +32,10 @@ const HowToPanel = (props) => {
   }
 
   useOnClickOrEsc(ref, () => close())
-
-  const queryString = window.location.search
+  let queryString;
+  if (typeof window !== 'undefined'){
+    queryString = window.location.search
+  }
   const urlParams = new URLSearchParams(queryString)
   const urlIconName = urlParams.get('iconName')
   const urlTagName = urlParams.get('tagName')
@@ -45,11 +47,13 @@ const HowToPanel = (props) => {
   }
 
   const selectTag = (urlTagName, callback) => {
-    window.history.replaceState(
-      '',
-      'EOS Icons',
-      `${window.location.pathname}?tagName=${urlTagName}`
-    )
+    if (typeof window !== 'undefined'){
+      window.history.replaceState(
+        '',
+        'EOS Icons',
+        `${window.location.pathname}?tagName=${urlTagName}`
+      )
+    }
     return callback
   }
   const setTagInSearch = () => {
@@ -82,7 +86,7 @@ const HowToPanel = (props) => {
                   id='copy-code'
                   className='input-group-element'
                   readOnly='readOnly'
-                  value={`<img src='${iconName}.svg'/>`}
+                  value={`<Image src='${iconName}.svg'/>`}
                 />
                 <Button
                   type='button'

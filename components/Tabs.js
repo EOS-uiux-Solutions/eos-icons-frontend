@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import useWindow from '../hooks/useWindow'
 import Toggle from './Toggle'
-import AppContext from '../utils/AppContext'
+import { AppContext }from '../utils/AppContext'
 import IconVersionToggle from './IconVersionToggle'
-import { SHOW_THEME_SWITCH } from '../config.json'
+import SHOW_THEME_SWITCH  from '../config.json'
 
 const Tabs = (props) => {
   const {

@@ -4,7 +4,8 @@ const ScrollToTop = () => {
   window.scrollTo(0, 0)
 }
 
-window.onscroll = () => {
+if (typeof window !== 'undefined'){
+  window.onscroll = () => {
   if (window.scrollY > 800) {
     document.getElementsByClassName('scroll-to-top-btn')[0].style.display =
       'block'
@@ -13,6 +14,8 @@ window.onscroll = () => {
       'None'
   }
 }
+}
+
 
 const ScrollToTopBtn = () => {
   return (

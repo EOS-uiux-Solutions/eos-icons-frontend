@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export const AboutBlock = ({
   title,
@@ -19,7 +20,7 @@ export const AboutBlock = ({
       </div>
 
       <div className='about-block-image'>
-        <img src={image} alt={title} />
+        <Image src={image} alt={title} />
       </div>
     </div>
   )

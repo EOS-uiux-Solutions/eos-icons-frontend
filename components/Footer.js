@@ -1,5 +1,6 @@
 import React from 'react'
 import links from '../utils/Links.store'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
@@ -16,7 +17,7 @@ const Footer = () => {
 const FooterBlock = ({ img, title, links }) => {
   return (
     <div className='footer-block'>
-      <span>{img ? <img src={img} alt='EOS Logo footer' /> : title}</span>
+      <span>{img ? <Image src={img} alt='EOS Logo footer' /> : title}</span>
       <div className='footer-block-list'>
         {links?.map((ele, index) => (
           <a

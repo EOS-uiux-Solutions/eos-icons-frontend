@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import LocalStorage from '../utils/LocalStorage'
-import AppContext from '../utils/AppContext'
+import { AppContext } from '../utils/AppContext'
 
 const isSelected = (item, state) => {
   return item === state

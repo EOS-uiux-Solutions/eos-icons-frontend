@@ -1,14 +1,19 @@
 export default {
   read: (key) => {
-    const data = localStorage.getItem(key)
+    if(typeof window !== 'undefined'){
+      const data = localStorage.getItem(key)
 
-    if (data) {
-      return JSON.parse(data)
-    } else {
-      return undefined
+      if (data) {
+        return JSON.parse(data)
+      } else {
+        return undefined
+      }
     }
+    
   },
   write: (key, data) => {
-    localStorage.setItem(key, JSON.stringify(data))
+    if (typeof window !== 'undefined'){
+      localStorage.setItem(key, JSON.stringify(data))
+    }
   }
 }

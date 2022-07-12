@@ -105,7 +105,7 @@ export const eosIconsState = {
     return multipleIcons
   },
   setSearchRegularList: function (value) {
-    if (value === '') {
+    if (value === '' || value === undefined) {
       return this.iconsCategory.map((ele) => {
         return {
           category: ele.category,
@@ -113,7 +113,7 @@ export const eosIconsState = {
         }
       })
     }
-
+          
     let keywordsArray
 
     if (value.includes(';')) {

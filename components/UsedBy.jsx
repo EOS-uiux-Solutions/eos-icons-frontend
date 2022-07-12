@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export const UsedBy = () => {
   return (
@@ -9,7 +10,7 @@ export const UsedBy = () => {
           return (
             <li key={i}>
               <a href={ele.url} target='_blank' rel='noopener noreferrer'>
-                <img src={ele.image} alt={ele.name} />
+                <Image src={ele.image} alt={ele.name} />
               </a>
             </li>
           )

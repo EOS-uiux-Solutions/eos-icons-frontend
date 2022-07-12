@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {AppContext} from '../utils/AppContext'
+import { Helmet } from 'react-helmet'
 
-export default function Home() {
+import IconsSet from '../modules/IconsSet'
+
+const Home = (props) => {
+  const [header, setHeader] = useState(true)
+
+  const manageHeader = () => {
+    setHeader(!header)
+  }
+
   return (
-    <div>
-      <h1>Initial setup done!</h1>
-    </div>
+    <AppContext.Consumer>
+      {({ state, dispatch }) => (
+        <>
+          <Helmet>
+            <title>More than 1000 free icons | EOS Icons</title>
+            <meta
+              name='description'
+              content='EOS icons are open source and they are fully customizable. Available as a ligature-based font face, SVG, PNG, font, CDN, NPM, Rubygem.'
+            />
+            <meta
+              name='keywords'
+              content='open source icon, ligature icon, action icon, animated icon, ai icon, design icon'
+            />
+          </Helmet>
+          <div>
+            <IconsSet action={manageHeader} container={props.container} />
+          </div>
+        </>
+      )}
+    </AppContext.Consumer>
+
   )
 }
+
+export default Home

@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
-import AppContext from '../utils/AppContext'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+import { AppContext } from '../utils/AppContext'
 
 /* Components */
 import Icon from '../components/IconDisplay'
@@ -13,6 +16,7 @@ import { useWindowsSize } from '../hooks/useWindow'
 import IconEditor from '../components/IconEditor'
 
 const IconsSet = (props) => {
+  const router = useRouter()
   const [iconSelected, setIconSelected] = useState('')
   const [showPanel, setShowPanel] = useState(false)
   const [searchValue, setSearchValue] = useState('')
@@ -22,11 +26,9 @@ const IconsSet = (props) => {
   const [staticHistory, setStaticHistory] = useState('')
   const [animatedHistory, setAnimatedHistory] = useState('')
   const searchRef = useRef(null)
-  const queryString = window.location.search
-  const urlParams = new URLSearchParams(queryString)
-  const urlIconName = urlParams.get('iconName')
-  const urlTagName = urlParams.get('tagName')
-  const tabType = urlParams.get('type')
+  const urlIconName = router.query.iconName
+  const urlTagName = router.query.tagName
+  const tabType = router.query.type
   const [selectMultiple, setSelectMultiple] = useState(true)
   const [emptySearchResult, setEmptySearchResult] = useState(false)
   const [suggestedString, setSuggestedString] = useState('')
@@ -82,26 +84,26 @@ const IconsSet = (props) => {
     }
   })
 
-  useEffect(() => {
-    props.container.current = resetIconSetStateFromNavbarLogo
-  }, [props.container])
+  // useEffect(() => {
+  //   props.container.current = resetIconSetStateFromNavbarLogo
+  // }, [props.container])
 
   const resetTabsStateRef = useRef(null)
 
-  const resetIconSetStateFromNavbarLogo = () => {
-    window.scroll(0, 0)
-    setShowPanel(false)
-    setSearchValue('')
-    setIconSelected('')
-    setActiveTab('Static Icons')
-    setStaticHistory('')
-    setSelectMultiple(true)
-    setAnimatedHistory('')
-    setEmptySearchResult(false)
-    setSuggestedString('')
-    setTagSelected('')
-    resetTabsStateRef.current()
-  }
+  // const resetIconSetStateFromNavbarLogo = () => {
+  //   window.scroll(0, 0)
+  //   setShowPanel(false)
+  //   setSearchValue('')
+  //   setIconSelected('')
+  //   setActiveTab('Static Icons')
+  //   setStaticHistory('')
+  //   setSelectMultiple(true)
+  //   setAnimatedHistory('')
+  //   setEmptySearchResult(false)
+  //   setSuggestedString('')
+  //   setTagSelected('')
+  //   resetTabsStateRef.current()
+  // }
 
   let setSearchWithUrlParam = urlIconName
 
@@ -111,7 +113,11 @@ const IconsSet = (props) => {
   }
 
   useEffect(() => {
-    if (setSearchWithUrlParam !== null && setSearchWithUrlParam !== '')
+    if (
+      setSearchWithUrlParam !== null &&
+      setSearchWithUrlParam !== '' &&
+      setSearchWithUrlParam !== undefined
+    )
       setSearchValue(setSearchWithUrlParam)
     if (tabType === 'static') {
       setActiveTab('Static Icons')
@@ -263,7 +269,7 @@ const IconsSet = (props) => {
       }
     }
 
-    if (urlTagName !== null) {
+    if (urlTagName !== null && urlTagName !== undefined) {
       setTagInSearch()
       setSearchValue(urlTagName)
     }
@@ -382,6 +388,7 @@ const IconsSet = (props) => {
   }
 
   const getWords = (values) => {
+    if (values === undefined) return
     let keywordsArray = []
     if (values.includes(';')) {
       keywordsArray = values.split(';')
@@ -466,7 +473,9 @@ const IconsSet = (props) => {
               name='search'
               onKeyDown={handleKeyPress}
               onChange={(event) => {
-                setSearchValue(event.target.value)
+                if (event) {
+                  setSearchValue(event.target.value)
+                }
 
                 if (event.target.value === '') {
                   closeHowTo()
@@ -572,7 +581,7 @@ const IconsSet = (props) => {
                   </span>{' '}
                   ?
                 </h3>
-                <img
+                <Image
                   className='icons-search'
                   src={require('../assets/images/no.jpg')}
                   height='400px'
@@ -649,7 +658,7 @@ const IconsSet = (props) => {
                   </span>{' '}
                   ?
                 </h3>
-                <img
+                <Image
                   className='icons-search'
                   src={require('../assets/images/no.jpg')}
                   height='400px'

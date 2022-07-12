@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Contributor = (props) => {
   const { title, href, image, name } = props
@@ -11,7 +12,7 @@ const Contributor = (props) => {
       target='_blank'
       rel='noopener noreferrer'
     >
-      <img
+      <Image
         className='contributors-img'
         src={require(`../assets/images/contributors/${image}`)}
         alt='Contributor'

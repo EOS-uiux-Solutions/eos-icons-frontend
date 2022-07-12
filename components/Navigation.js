@@ -1,46 +1,50 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 import eosIcon from '../assets/images/eos-icons-logo.svg'
 
-const NavLink = (props) => (
-  <Link
-    {...props}
-    getProps={({ isCurrent }) => {
-      return {
-        className: isCurrent ? 'active' : ''
-      }
-    }}
-  />
-)
+
+const NavLink = ({ href, children, ...props }) => {
+  const { asPath } = useRouter();
+  const className = asPath === href || asPath === props.as ? 'active' : '';
+  return (
+    <Link href={href}>
+      <a className={className}>{children}</a>
+    </Link>
+  )
+}
 
 const Navigation = (props) => {
   return (
     <header className='flex-wrap-sm navigation'>
       <div className='container navigation-content'>
-        <Link
-          to='/'
-          onClick={() => {
-            props.resetIconSetState()
-          }}
-        >
+        <Link href='/'>
           <div className='brand'>
-            <img className='logo' src={eosIcon} alt='eos-icons logo' />
+            <Image
+              className='logo'
+              src={eosIcon}
+              alt='eos-icons logo'
+              onClick={() => {
+                props.resetIconSetState()
+              }}
+            />
           </div>
         </Link>
         <nav className='padding-bottom-s'>
-          <NavLink to='/'>
+          <NavLink href='/'>
             <i className='eos-icons'>miscellaneous</i>
             Icons
           </NavLink>
-          <NavLink to='/about'>
+          <NavLink href='/about'>
             <i className='eos-icons'>face</i>
             About Us
           </NavLink>
-          <NavLink to='/docs'>
+          <NavLink href='/docs'>
             <i className='eos-icons'>description</i>
             Docs{' '}
           </NavLink>
-          <NavLink to='/team'>
+          <NavLink href='/team'>
             <i className='eos-icons'>group</i>
             Team{' '}
           </NavLink>

@@ -51,7 +51,7 @@ const Icon = (props) => {
         if (event.detail === 2) onDoubleClickAction()
       }}
     >
-      {/* <img src={require(`eos-icons/animated-svg/${name}.svg`)} alt={name} /> */}
+      <img src={require(`eos-icons/animated-svg/${name}.svg`)} alt={name} />
       {name}
     </div>
   )

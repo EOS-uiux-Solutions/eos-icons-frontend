@@ -19,12 +19,14 @@ export const useWindowsSize = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindows)
-    window.addEventListener('scroll', handleWindows)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleWindows)
+      window.addEventListener('scroll', handleWindows)
 
-    return () => {
-      window.removeEventListener('resize', handleWindows)
-      window.removeEventListener('handleScroll', handleWindows)
+      return () => {
+        window.removeEventListener('resize', handleWindows)
+        window.removeEventListener('handleScroll', handleWindows)
+      }
     }
   }, [])
 

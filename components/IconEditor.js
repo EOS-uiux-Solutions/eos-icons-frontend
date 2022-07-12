@@ -3,11 +3,12 @@ import { SketchPicker } from 'react-color'
 import Button from './Button'
 import axios from 'axios'
 import loading from '../assets/images/loading-white.svg'
-import AppContext from '../utils/AppContext'
+import { AppContext }from '../utils/AppContext'
 /* https://www.npmjs.com/package/react-svg the package to work with SVG's */
 import { ReactSVG } from 'react-svg'
-import { ICON_PICKER_API_URL } from '../config.json'
+import ICON_PICKER_API_URL  from '../config.json'
 import useClickOutside from '../hooks/useClickOutside'
+import Image from 'next/image'
 
 const IconEditor = (props) => {
   const apiBaseUrl = ICON_PICKER_API_URL
@@ -106,10 +107,10 @@ const IconEditor = (props) => {
 
     const fetchSvg = async (Url, iconArray) => {
       const payload = {
-        iconArray: iconArray,
+        iconArray,
         customizationConfig: {
           colorCode: color,
-          rotateAngle: rotateAngle,
+          rotateAngle,
           flip: { horizontal: horizontalFlip, vertical: verticalFlip }
         }
       }
@@ -161,11 +162,11 @@ const IconEditor = (props) => {
         }`,
         payload: {
           icons: iconNames,
-          exportAs: exportAs,
-          exportSize: exportSize,
+          exportAs,
+          exportSize,
           customizationConfig: {
             colorCode: color,
-            rotateAngle: rotateAngle,
+            rotateAngle,
             flip: { horizontal: horizontalFlip, vertical: verticalFlip }
           }
         }
@@ -331,7 +332,7 @@ const IconEditor = (props) => {
                 ) : (
                   <span>
                     Exporting Icon{' '}
-                    <img
+                    <Image
                       className='btn-loading-icon'
                       src={loading}
                       alt='loading-icon'
