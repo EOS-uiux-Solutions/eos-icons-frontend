@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AppContext }from '../utils/AppContext'
+import { AppContext } from '../utils/AppContext'
 import Link from 'next/link'
 import Button from './Button'
 import Cookies from 'js-cookie'

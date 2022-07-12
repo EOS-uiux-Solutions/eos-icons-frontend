@@ -21,7 +21,7 @@ const categories = Array.from(
 
 const iconsCategory = categories.map((category) => {
   return {
-    category: category,
+    category,
     icons: staticIcons
       .map((ele) =>
         ele.category === category || ele.category[0] === category ? ele : null
@@ -39,7 +39,7 @@ function searchMutliple(element, searchArray) {
 
 /* EOS Icons state */
 export const eosIconsState = {
-  animatedIcons: animatedIcons,
+  animatedIcons,
   icons: staticIcons,
   iconsCategory,
   iconsCategoryList: iconsCategory.map((ele) => ele.category),
@@ -113,7 +113,7 @@ export const eosIconsState = {
         }
       })
     }
-          
+
     let keywordsArray
 
     if (value.includes(';')) {

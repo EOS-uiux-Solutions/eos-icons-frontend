@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {AppContext} from '../utils/AppContext'
+import { AppContext } from '../utils/AppContext'
 import { Helmet } from 'react-helmet'
 
 import IconsSet from '../modules/IconsSet'
@@ -32,7 +32,6 @@ const Home = (props) => {
         </>
       )}
     </AppContext.Consumer>
-
   )
 }
 

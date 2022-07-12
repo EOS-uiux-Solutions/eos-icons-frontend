@@ -4,18 +4,17 @@ const ScrollToTop = () => {
   window.scrollTo(0, 0)
 }
 
-if (typeof window !== 'undefined'){
+if (typeof window !== 'undefined') {
   window.onscroll = () => {
-  if (window.scrollY > 800) {
-    document.getElementsByClassName('scroll-to-top-btn')[0].style.display =
-      'block'
-  } else {
-    document.getElementsByClassName('scroll-to-top-btn')[0].style.display =
-      'None'
+    if (window.scrollY > 800) {
+      document.getElementsByClassName('scroll-to-top-btn')[0].style.display =
+        'block'
+    } else {
+      document.getElementsByClassName('scroll-to-top-btn')[0].style.display =
+        'None'
+    }
   }
 }
-}
-
 
 const ScrollToTopBtn = () => {
   return (

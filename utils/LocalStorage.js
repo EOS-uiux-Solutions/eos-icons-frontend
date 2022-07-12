@@ -1,6 +1,6 @@
 export default {
   read: (key) => {
-    if(typeof window !== 'undefined'){
+    if (typeof window !== 'undefined') {
       const data = localStorage.getItem(key)
 
       if (data) {
@@ -9,10 +9,9 @@ export default {
         return undefined
       }
     }
-    
   },
   write: (key, data) => {
-    if (typeof window !== 'undefined'){
+    if (typeof window !== 'undefined') {
       localStorage.setItem(key, JSON.stringify(data))
     }
   }

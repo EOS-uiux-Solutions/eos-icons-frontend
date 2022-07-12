@@ -4,10 +4,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import eosIcon from '../assets/images/eos-icons-logo.svg'
 
-
 const NavLink = ({ href, children, ...props }) => {
-  const { asPath } = useRouter();
-  const className = asPath === href || asPath === props.as ? 'active' : '';
+  const { asPath } = useRouter()
+  const className = asPath === href || asPath === props.as ? 'active' : ''
   return (
     <Link href={href}>
       <a className={className}>{children}</a>

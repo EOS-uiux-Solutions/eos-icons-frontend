@@ -10,7 +10,6 @@ const NavLink = ({ href, children, ...props }) => {
       <a className>{children}</a>
     </Link>
   )
-  
 }
 
-export default NavLink;
+export default NavLink

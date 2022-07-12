@@ -32,8 +32,8 @@ const HowToPanel = (props) => {
   }
 
   useOnClickOrEsc(ref, () => close())
-  let queryString;
-  if (typeof window !== 'undefined'){
+  let queryString
+  if (typeof window !== 'undefined') {
     queryString = window.location.search
   }
   const urlParams = new URLSearchParams(queryString)
@@ -47,7 +47,7 @@ const HowToPanel = (props) => {
   }
 
   const selectTag = (urlTagName, callback) => {
-    if (typeof window !== 'undefined'){
+    if (typeof window !== 'undefined') {
       window.history.replaceState(
         '',
         'EOS Icons',

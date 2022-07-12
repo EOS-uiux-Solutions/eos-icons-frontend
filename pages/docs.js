@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react'
 import PageHeader from '../components/PageHeader'
 import Tabs from '../components/Tabs'
