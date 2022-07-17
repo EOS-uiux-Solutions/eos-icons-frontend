@@ -51,7 +51,7 @@ const data = [
       'Commercial, non-commercial, use them as you please. EOS icons comes with an MIT license, has an open source community, and welcomes your collaboration too.',
     linkTo: 'https://gitlab.com/SUSE-UIUX/eos-icons/',
     linkTitle: 'View the git repository ',
-    image: require('../assets/images/pages/open-source.png'),
+    image: require('../public/assets/images/pages/open-source.png'),
     reverse: false
   },
   {
@@ -61,7 +61,7 @@ const data = [
     linkTo:
       'https://material.io/design/iconography/system-icons.html#grid-keyline-shapes',
     linkTitle: 'Creating system icons',
-    image: require('../assets/images/pages/hi-tech.png'),
+    image: require('../public/assets/images/pages/hi-tech.png'),
     reverse: true
   },
   {
@@ -71,7 +71,7 @@ const data = [
     linkTo:
       'https://gitlab.com/SUSE-UIUX/eos-icons/-/issues/new?issue%5Bassignee_id%5D=&issue%5Bmilestone_id%5D=',
     linkTitle: 'Request icons for your project',
-    image: require('../assets/images/pages/pixel-perfect.png'),
+    image: require('../public/assets/images/pages/pixel-perfect.png'),
     reverse: false
   }
 ]

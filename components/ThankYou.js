@@ -1,5 +1,5 @@
 import React from 'react'
-import bunny from '../assets/images/eos-bunny.png'
+import bunny from '../public/assets/images/eos-bunny.png'
 import Image from 'next/image'
 
 const ThankYou = () => {

@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import React from 'react'
-import '../assets/scss/index.scss'
+import '../public/assets/scss/index.scss'
 import { AppWrapper } from '../utils/AppContext'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'

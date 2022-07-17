@@ -583,7 +583,7 @@ const IconsSet = (props) => {
                 </h3>
                 <Image
                   className='icons-search'
-                  src={require('../assets/images/no.jpg')}
+                  src={require('../public/assets/images/no.jpg')}
                   height='400px'
                   alt='Sorry, no icons were found'
                 />
@@ -660,7 +660,7 @@ const IconsSet = (props) => {
                 </h3>
                 <Image
                   className='icons-search'
-                  src={require('../assets/images/no.jpg')}
+                  src={require('../public/assets/images/no.jpg')}
                   height='400px'
                   alt='Sorry, no icons were found'
                 />

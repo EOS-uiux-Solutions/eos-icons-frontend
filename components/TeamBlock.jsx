@@ -1,22 +1,23 @@
 import React from 'react'
+import Image from 'next/image'
 
 const socialMediaImg = {
-  twitter: require('../assets/images/social/twitter.svg'),
-  linkedin: require('../assets/images/social/linkedin.svg'),
-  git: require('../assets/images/social/git.svg'),
-  dribbble: require('../assets/images/social/dribbble.svg'),
-  behance: require('../assets/images/social/behance.svg'),
-  medium: require('../assets/images/social/medium.svg')
+  twitter: require('../public/assets/images/social/twitter.svg'),
+  linkedin: require('../public/assets/images/social/linkedin.svg'),
+  git: require('../public/assets/images/social/git.svg'),
+  dribbble: require('../public/assets/images/social/dribbble.svg'),
+  behance: require('../public/assets/images/social/behance.svg'),
+  medium: require('../public/assets/images/social/medium.svg')
 }
 
 export const TeamBlock = ({ image, role, name, description, social }) => {
   return (
-    <div className='team-member' style={{ backgroundImage: `url(${image})` }}>
+    <div className='team-member'>
+      <Image src={image} alt={name} layout='fill' objectFit='contain' />
       <div className='team-member-overlay'>
         <div className='team-member-overlay-content'>
           <h4>{name}</h4>
           <p>{description}</p>
-
           <div className='team-member-social'>
             <ul>
               {social?.map((ele, i) => {
@@ -27,7 +28,7 @@ export const TeamBlock = ({ image, role, name, description, social }) => {
                       target='_blank'
                       rel='noopener noreferrer'
                     >
-                      <img src={socialMediaImg[ele.title]} alt={ele.title} />
+                      <Image src={socialMediaImg[ele.title]} alt={ele.title} />
                     </a>
                   </li>
                 )
@@ -37,7 +38,7 @@ export const TeamBlock = ({ image, role, name, description, social }) => {
         </div>
       </div>
 
-      <span>{role}</span>
+      <div className='team-member-role'>{role}</div>
     </div>
   )
 }
@@ -58,18 +59,16 @@ export const ContributorsBlock = ({ image, name, role, social }) => {
                   target='_blank'
                   rel='noopener noreferrer nofollow'
                 >
-                  <img src={socialMediaImg[ele.title]} alt={ele.title} />
+                  <Image src={socialMediaImg[ele.title]} alt={ele.title} />
                 </a>
               </li>
             )
           })}
         </ul>
       </div>
-
-      <div
-        className='team-contributor-image'
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
+      <div className='team-contributor-image'>
+        <Image src={image} />
+      </div>
     </div>
   )
 }

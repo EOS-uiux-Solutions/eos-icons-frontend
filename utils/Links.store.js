@@ -96,7 +96,7 @@ export default [
   },
   {
     title: 'EOS Products',
-    img: require('../assets/images/eos-icons-logo.svg'),
+    img: require('../public/assets/images/eos-icons-logo.svg'),
     links: [
       {
         name: 'Cookies Policy',

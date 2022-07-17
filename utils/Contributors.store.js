@@ -4,7 +4,7 @@ export const leads = [
     description:
       'Open source advocate, mentor, and UX/ UI enthusiast. Loves video games, playing with new tech, and her dog.',
     role: 'FOUNDER & PRODUCT MANAGER',
-    image: require('../assets/images/contributors/cynthia.jpg'),
+    image: require('../public/assets/images/contributors/cynthia.jpg'),
     social: [
       {
         title: 'twitter',
@@ -25,7 +25,7 @@ export const leads = [
     description:
       'A full-stack developer with UX/UI in mind and heart, In love tech and code. ',
     role: 'UX Developer',
-    image: require('../assets/images/contributors/sorin.jpeg'),
+    image: require('../public/assets/images/contributors/sorin.jpeg'),
     social: [
       {
         title: 'twitter',
@@ -46,7 +46,7 @@ export const leads = [
     description:
       'Developer by profession, Designer by passion. Love building tech to solve problems, watching Office and clashing.',
     role: 'Developer',
-    image: require('../assets/images/contributors/kt.jpg'),
+    image: require('../public/assets/images/contributors/kt.jpg'),
     social: [
       {
         title: 'twitter',
@@ -67,7 +67,7 @@ export const leads = [
     description:
       'Mentor, social media influencer, and keen to explore all corners of software development.',
     role: 'Full Stack Developer',
-    image: require('../assets/images/contributors/aditya.png'),
+    image: require('../public/assets/images/contributors/aditya.png'),
     social: [
       {
         title: 'linkedin',
@@ -83,7 +83,7 @@ export const creators = [
     description:
       'Graphic designer, illustrator & brand identity designer. Loves arts and crafts, travelling and summer.',
     role: 'Graphic Designer',
-    image: require('../assets/images/contributors/zvezdana.jpg'),
+    image: require('../public/assets/images/contributors/zvezdana.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -99,7 +99,7 @@ export const creators = [
     name: 'Manuele Carlini',
     description: '',
     role: 'Designer',
-    image: require('../assets/images/contributors/manuele.png'),
+    image: require('../public/assets/images/contributors/manuele.png'),
     social: [
       {
         title: 'twitter',
@@ -112,7 +112,7 @@ export const creators = [
     description:
       'I am a Front end developer who also loves doing design and UX/UI.',
     role: 'Front end Developer',
-    image: require('../assets/images/contributors/richa.jpg'),
+    image: require('../public/assets/images/contributors/richa.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -125,7 +125,7 @@ export const creators = [
     description:
       'I’m a UX/UI & Front End developer based in Barcelona. My interests are Agile, Design, SEO & Cycling',
     role: 'SEO strategist & FE developer',
-    image: require('../assets/images/contributors/jesus.png'),
+    image: require('../public/assets/images/contributors/jesus.png'),
     social: [
       {
         title: 'twitter',
@@ -143,7 +143,7 @@ export const contributors = [
   {
     name: 'Kateryna Marchak',
     role: 'Marketing',
-    image: require('../assets/images/contributors/kathie.png'),
+    image: require('../public/assets/images/contributors/kathie.png'),
     social: [
       {
         title: 'twitter',
@@ -158,7 +158,7 @@ export const contributors = [
   {
     name: 'Carla Moratillo',
     role: 'Designer',
-    image: require('../assets/images/contributors/carla.jpg'),
+    image: require('../public/assets/images/contributors/carla.jpg'),
     social: [
       {
         title: 'dribbble',
@@ -169,7 +169,7 @@ export const contributors = [
   {
     name: 'Saurabh Sharma',
     role: 'Designer',
-    image: require('../assets/images/contributors/saurabh.jpg'),
+    image: require('../public/assets/images/contributors/saurabh.jpg'),
     social: [
       {
         title: 'twitter',
@@ -180,7 +180,7 @@ export const contributors = [
   {
     name: 'Abhinandan Sharma',
     role: 'Blockchain Developer',
-    image: require('../assets/images/contributors/abhinandan.png'),
+    image: require('../public/assets/images/contributors/abhinandan.png'),
     social: [
       {
         title: 'linkedin',
@@ -199,7 +199,7 @@ export const contributors = [
   {
     name: 'Shashank Jarial',
     role: 'FE Developer',
-    image: require('../assets/images/contributors/shashank.jpg'),
+    image: require('../public/assets/images/contributors/shashank.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -210,7 +210,7 @@ export const contributors = [
   {
     name: 'Devesh Vijaywargiya',
     role: 'FE Developer',
-    image: require('../assets/images/contributors/devesh.jpg'),
+    image: require('../public/assets/images/contributors/devesh.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -222,7 +222,7 @@ export const contributors = [
   {
     name: 'Rishabh Kohale',
     role: 'FE Developer',
-    image: require('../assets/images/contributors/rishab.jpg'),
+    image: require('../public/assets/images/contributors/rishab.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -233,7 +233,7 @@ export const contributors = [
   {
     name: 'Harshita Mangla',
     role: 'FE Developer',
-    image: require('../assets/images/contributors/harshita.jpg'),
+    image: require('../public/assets/images/contributors/harshita.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -252,7 +252,7 @@ export const contributors = [
   {
     name: 'Abhirup Pal',
     role: 'FE Developer',
-    image: require('../assets/images/contributors/abhirup.jpg'),
+    image: require('../public/assets/images/contributors/abhirup.jpg'),
     social: [
       {
         title: 'linkedin',
@@ -263,7 +263,7 @@ export const contributors = [
   {
     name: 'Fawzi E. Abdulfattah',
     role: 'Full stack Developer',
-    image: require('../assets/images/contributors/fawzi.jpeg'),
+    image: require('../public/assets/images/contributors/fawzi.jpeg'),
     social: [
       {
         title: 'linkedin',
@@ -282,7 +282,7 @@ export const contributors = [
   {
     name: 'Sundeep Chand',
     role: 'Full stack Developer',
-    image: require('../assets/images/contributors/sundeep.jpeg'),
+    image: require('../public/assets/images/contributors/sundeep.jpeg'),
     social: [
       {
         title: 'linkedin',
@@ -297,7 +297,7 @@ export const contributors = [
   {
     name: 'Vinayak Sharma',
     role: 'JS Developer',
-    image: require('../assets/images/contributors/vinayak.jpg'),
+    image: require('../public/assets/images/contributors/vinayak.jpg'),
     social: [
       {
         title: 'linkedin',

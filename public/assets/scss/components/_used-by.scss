@@ -56,6 +56,10 @@ $font-normal: 16px;
     }
   }
 
+  &-image {
+    width: 50px;
+  }
+
   @media (max-width: $mobile-max) {
     flex-direction: column;
 

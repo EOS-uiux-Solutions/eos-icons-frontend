@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react'
 import { SketchPicker } from 'react-color'
 import Button from './Button'
 import axios from 'axios'
-import loading from '../assets/images/loading-white.svg'
+import loading from '../public/assets/images/loading-white.svg'
 import { AppContext } from '../utils/AppContext'
 /* https://www.npmjs.com/package/react-svg the package to work with SVG's */
 import { ReactSVG } from 'react-svg'
