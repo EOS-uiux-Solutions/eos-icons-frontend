@@ -1,0 +1,130 @@
+$background-slack: url('../../images/pages/slack_panel.png') left center
+  no-repeat;
+$font-size-28px: 28px;
+$font-size-p: 16px;
+$font-size-20px: 20px;
+
+.team-page {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  &-maintainers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    &-introduction {
+      display: flex;
+      flex-direction: column;
+      height: 310px;
+      justify-content: center;
+      margin-right: $xxl;
+      margin-top: $xxl;
+      position: relative;
+      width: 310px;
+
+      h2 {
+        font-size: $font-size-28px;
+        font-weight: bold;
+
+        @media (max-width: $mobile-max) {
+          font-size: $font-size-20px;
+        }
+      }
+
+      p {
+        font-size: $font-size-20px;
+      }
+
+      h2,
+      p {
+        margin: 0;
+        margin-left: $xxxl;
+      }
+
+      @media (max-width: $mobile-max) {
+        height: auto;
+        margin: 0;
+        width: 100%;
+
+        h2,
+        p {
+          margin-left: 0;
+        }
+
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &-contributors {
+    margin-top: 120px;
+
+    h2 {
+      font-weight: bold;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      width: 50%;
+
+      @media (max-width: $mobile-max) {
+        text-align: left;
+        width: 100%;
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &-cta {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+
+    .slack-cta {
+      align-items: center;
+      background: $background-slack;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px;
+      padding-left: 35%;
+      width: 400px;
+
+      h4 {
+        font-size: $font-size-28px;
+        margin: 0;
+        padding-bottom: 16px;
+      }
+
+      p {
+        font-size: $font-size-p;
+        line-height: 30px;
+        text-align: center;
+      }
+
+      @media (max-width: $mobile-max) {
+        align-items: end;
+        background: none;
+        padding: 0;
+        width: 100%;
+
+        h4 {
+          font-size: $font-size-20px;
+        }
+
+        p {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

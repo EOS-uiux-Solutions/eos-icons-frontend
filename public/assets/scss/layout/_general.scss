@@ -1,0 +1,26 @@
+body {
+  color: $black;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+.app-container {
+  min-height: calc(100vh - 56px);
+}
+
+.container {
+  margin: auto;
+  max-width: 1140px;
+  padding: $xl;
+}
+
+.disabled {
+  color: $dark-gray;
+  cursor: not-allowed;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

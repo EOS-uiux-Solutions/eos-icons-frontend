@@ -1,0 +1,92 @@
+.icons-list {
+  @extend .flex;
+  @extend .flex-wrap;
+  justify-content: left;
+  margin-bottom: 0;
+
+  .icon-container {
+    align-items: center;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    font-size: $small-font;
+    font-weight: 300;
+    margin: $s;
+    overflow: hidden;
+    padding: $s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+
+    @media (max-width: $mobile-max) {
+      margin: $xs;
+      padding: $xs;
+    }
+
+    &.active {
+      border: 2px solid $primary;
+    }
+
+    &:hover {
+      border: 2px solid $primary;
+      cursor: pointer;
+    }
+
+    .eos-icons,
+    img {
+      border: 2px solid $white;
+      height: 32px;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+      width: 32px;
+    }
+
+    .eos-icons-outlined,
+    img {
+      border: 2px solid $white;
+      height: 32px;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+      width: 32px;
+    }
+  }
+}
+
+.icons-search {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suggested-search-line {
+  font-weight: normal;
+
+  .suggested-search {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration-line: underline;
+  }
+}
+
+.total-icons {
+  margin: 5px 0px 0px 40px;
+}
+
+h4.category {
+  color: $primary;
+  margin-bottom: 0;
+  margin-top: $xl;
+  padding: 0 $m;
+  text-transform: capitalize;
+
+  @media (max-width: $mobile-max) {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+}

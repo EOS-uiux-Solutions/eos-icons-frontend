@@ -1,0 +1,64 @@
+.cookies-alert {
+  background: $black;
+  bottom: 0;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: $s 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1030;
+
+  .cookies-alert-body {
+    margin: 0 $xxl;
+
+    a {
+      color: $white;
+      text-decoration: underline;
+    }
+  }
+
+  .cookies-alert-buttons {
+    margin-right: $xxl;
+    padding: $l 0;
+
+    a {
+      color: $white;
+      margin: 0 $m;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: $mobile-max) {
+  /* For tablets and mobile: */
+  .cookies-alert {
+    display: flex;
+    flex-direction: column;
+    max-height: 130px;
+    position: fixed;
+    top: 0;
+
+    .cookies-alert-buttons {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .cookies-alert-body {
+      margin: $m;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .hide {
+    display: none;
+  }
+}

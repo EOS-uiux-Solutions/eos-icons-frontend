@@ -1,0 +1,58 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-font-family;
+  line-height: $line-height;
+}
+
+h1,
+h2 {
+  font-weight: bolder;
+  line-height: 1.5em;
+  margin: 0;
+}
+
+h1 {
+  display: inline-block;
+  font-weight: 800;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 1;
+
+  @media (max-width: $mobile-max) {
+    font-size: $h1-mobile;
+  }
+
+  &:after {
+    border: 12px solid $primary;
+    content: '';
+    margin-left: -35%;
+    margin-top: 14px;
+    position: absolute;
+    width: 32%;
+    z-index: -1;
+
+    @media (max-width: $mobile-max) {
+      border: 8px solid $primary;
+      margin-top: 10px;
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+p.subheadline {
+  font-family: $header-font-family;
+  font-size: $subheadline-font-size;
+  font-weight: 300;
+  line-height: $line-height;
+
+  @media (max-width: $mobile-max) {
+    font-size: $subheadline-font-size-mobile;
+  }
+}

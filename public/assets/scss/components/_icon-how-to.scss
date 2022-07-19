@@ -1,0 +1,68 @@
+.how-to-use-block {
+  border-top: 1px solid $light-gray;
+  bottom: 0;
+  left: 0;
+  margin-top: $xl;
+  padding: $l 0 0;
+  position: relative;
+  width: 100%;
+  z-index: $z-index-10;
+
+  .container {
+    align-items: flex-start;
+    display: flex;
+    padding: 0;
+
+    span {
+      margin-top: 6px;
+    }
+
+    h2 {
+      line-height: 0.4em;
+    }
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    margin: 0 $l;
+
+    strong {
+      font-size: $small-font;
+    }
+  }
+
+  .close-button {
+    cursor: pointer;
+    padding: $s;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+  }
+
+  @media (max-width: $mobile-max) {
+    .container {
+      display: flex;
+      flex-direction: column;
+
+      .how-to-use-block-left {
+        margin: $s 0 0;
+
+        button.btn-primary {
+          margin: $s;
+        }
+
+        button.btn-primary:first-of-type {
+          margin-left: 0;
+        }
+      }
+
+      .input-group {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+      }
+    }
+  }
+}

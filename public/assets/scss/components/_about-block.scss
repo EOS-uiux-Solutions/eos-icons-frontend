@@ -1,0 +1,42 @@
+.about-block {
+  align-items: center;
+  display: flex;
+  padding: $xxl 0;
+
+  &-description {
+    width: 50%;
+
+    @media (max-width: $mobile-max) {
+      margin-top: $xxl;
+      width: 100%;
+    }
+
+    h2 {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  &.is-reversed {
+    flex-direction: row-reverse;
+  }
+
+  &-image {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+
+    img {
+      max-width: 430px;
+    }
+  }
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column-reverse;
+
+    &.is-reversed {
+      flex-direction: column-reverse;
+    }
+  }
+}
