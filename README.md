@@ -1,34 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://eos-icons.com)
 
-## Getting Started
+Visit the [EOS icons website](https://eos-icons.com)
 
-First, run the development server:
+# Guideline to develop this site
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+In the project directory, you can run:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Setting up
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+After cloning this repository you will need to install all the dependencies: `npm i`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+#### Staring up
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Then run: `npm run dev` to run the app in the development mode.
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-To learn more about Next.js, take a look at the following resources:
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### JS and SCSS quality assurance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To make sure your code is formatted correctly run: `npm run check-format`
 
-## Deploy on Vercel
+You can format it automatically by running: `npm run format`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To make sure your code has proper liniting: `npm run check-lint`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can automatically fix linting by running: `npm run lint`.
+
+### Build it to ensure it will work on production
+
+`npm run build`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+# How to contribute
+
+### Code contributions
+
+1. Open a new or pick an open issue from the issue list and claim it in the comments. Make sure that the issue is confirmed so you don't work on something that will not be approved to be merged.
+2. Make sure you follow our best practices: [refer to our Wiki](https://github.com/EOS-uiux-Solutions/wiki). You'll find information on writing code, how to name a branch, how we release, etc.
+3. Join Slack [optional] to get in touch with the maintainers if you have any doubt: [join slack](http://slack.eosdesignsystem.com/)
+4. Make sure you fork the project, cloning it will not give you the right access to open a PR/MR. [How to open a PR in open source](https://github.com/EOS-uiux-Solutions/wiki/blob/main/Basic-git-instructions-for-beginners.md)
+
+### Design contributions
+
+If you'd like to contribute with design changes, you'll have to do as follows:
+
+1. [Open an issue](https://github.com/EOS-uiux-Solutions/eos-icons-landing/issues)
+2. Add all relevant information to the issue. Please be as descriptive as possible. Add links to references, images, videos, etc.
+3. While working on your design, please make sure you follow our [design guidelines](https://github.com/EOS-uiux-Solutions/wiki/blob/main/Design-process-and-feedback-gathering.md).
+4. Once the issue is approved by us, it'll be ready to be implemented.
+
+### Adding new icons
+
+If you'd like to add new icons, you'll need to head over to the [icons repository](https://gitlab.com/SUSE-UIUX/eos-icons) where you'll find thorough instructions on how to design & add icons to the iconic font.
+
+# Learn more about the EOS UX/UI Solutions
+
+- [EOS Design System](https://brand.eosdesignsystem.com/)
+
+- [EOS Icons](https://eos-icons.com)
+
+- [User Story](https://userstory.eosdesignsystem.com/)
+
+- [Follow us on Twitter](https://twitter.com/eosdesignsystem)
+
+- [Join us in Slack](https://slack.eosdesignsystem.com)
+
+# Our "thank you" section
+
+### Tested for every browser in every device
+
+Thanks to [Browserstack](https://www.browserstack.com) and their continuous contribution to open source projects, we continuously test the EOS to make sure all our features and components work perfectly fine in all browsers.
+Browserstack helps us make sure our Design System also delivers a peace of mind to all developers and designers making use of our components and layout in their products.
+
+Thanks to Vercel sponsoring this project by allowing it to be deployed for free for the eos-icons frontend Project."
+
+[![Website shields.io](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg)](https://vercel.com/?utm_source=eos-icons&utm_campaign=oss)
