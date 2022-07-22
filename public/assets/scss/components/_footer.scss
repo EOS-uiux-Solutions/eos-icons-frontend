@@ -50,6 +50,6 @@ footer {
   }
 
   @media (max-width: $mobile-max) {
-    margin-bottom: 80px;
+    margin-bottom: 80px !important;
   }
 }

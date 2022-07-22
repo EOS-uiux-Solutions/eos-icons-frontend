@@ -1,6 +1,15 @@
 export default [
   {
     title: 'Get in touch with us',
+    vercel: {
+      name: 'Vercel banner',
+      img: require('../public/assets/images/vercel-banner.svg'),
+      href: 'https://vercel.com/?utm_source=eos-icons&utm_campaign=oss',
+      category: 'External link',
+      action: 'Link to Vercel Homepage',
+      label: 'Footer',
+      target: '_blank'
+    },
     links: [
       {
         name: 'EOS on Twitter',

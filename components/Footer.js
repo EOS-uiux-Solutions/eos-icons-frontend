@@ -1,15 +1,25 @@
 import React from 'react'
 import links from '../utils/Links.store'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className='container flex flex-wrap'>
       <div className='container flex flex-wrap'>
         {links.map((ele, i) => {
           return <FooterBlock {...ele} key={i} />
         })}
       </div>
+      <Link href={links[0].vercel.href}>
+        <a target={links[0].vercel.target}>
+          <Image
+            className='container flex flex-wrap'
+            src={links[0].vercel.img}
+            alt='vercel-banner'
+          />{' '}
+        </a>
+      </Link>
     </footer>
   )
 }
