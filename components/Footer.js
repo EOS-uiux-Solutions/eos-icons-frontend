@@ -5,21 +5,19 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className='container flex flex-wrap'>
+    <footer>
       <div className='container flex flex-wrap'>
-        {links.map((ele, i) => {
-          return <FooterBlock {...ele} key={i} />
-        })}
+        <div className='container flex flex-wrap'>
+          {links.map((ele, i) => {
+            return <FooterBlock {...ele} key={i} />
+          })}
+        </div>
+        <Link href={links[0].vercel.href}>
+          <a className='banner' target={links[0].vercel.target}>
+            <Image className='' src={links[0].vercel.img} alt='vercel-banner' />{' '}
+          </a>
+        </Link>
       </div>
-      <Link href={links[0].vercel.href}>
-        <a target={links[0].vercel.target}>
-          <Image
-            className='container flex flex-wrap'
-            src={links[0].vercel.img}
-            alt='vercel-banner'
-          />{' '}
-        </a>
-      </Link>
     </footer>
   )
 }
