@@ -7,7 +7,6 @@ import { AppContext } from '../utils/AppContext'
 /* https://www.npmjs.com/package/react-svg the package to work with SVG's */
 import { ReactSVG } from 'react-svg'
 import ICON_PICKER_API_URL from '../config.json'
-import useClickOutside from '../hooks/useClickOutside'
 import Image from 'next/image'
 
 const IconEditor = (props) => {
@@ -27,7 +26,6 @@ const IconEditor = (props) => {
   const { state } = useContext(AppContext)
 
   const iconEditorRef = useRef()
-  useClickOutside(iconEditorRef, () => show())
 
   const exportSizes = [
     '18',

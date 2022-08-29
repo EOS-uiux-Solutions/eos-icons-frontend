@@ -6,15 +6,18 @@ import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import CookiesBanner from '../components/CookiesBanner'
 import ScrollToTopBtn from '../components/ScrollToTop'
+import { IconSetWrapper } from '../utils/IconSetContext'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AppWrapper>
-      <Navigation />
-      <Component {...pageProps} />
-      <Footer />
-      <ScrollToTopBtn />
-      <CookiesBanner />
+      <IconSetWrapper>
+        <Navigation />
+        <Component {...pageProps} />
+        <Footer />
+        <ScrollToTopBtn />
+        <CookiesBanner />
+      </IconSetWrapper>
     </AppWrapper>
   )
 }

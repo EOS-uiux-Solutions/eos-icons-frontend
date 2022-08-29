@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react'
 import Button from './Button'
-import { eosIconsState } from '../utils/EosIcons.store'
 import GeneratingFont from './GeneratingFont'
 import Modal from './Modal'
 import ThankYou from './ThankYou'
 import IconEditor from './IconEditor'
 import axios from 'axios'
-import AppContext from '../utils/AppContext'
+import { AppContext } from '../utils/AppContext'
 import ICON_PICKER_API_URL from '../config.json'
 
 const sendData = async (params) => {
@@ -32,12 +31,11 @@ const CustomizeIconsPanel = (props) => {
 
   const iconEditorToggle = (e) => {
     e.preventDefault()
-    if (value.multipleIcons.length > 0) setIconEditor(!iconEditor)
+    if (state.multipleIcons.length > 0) setIconEditor(!iconEditor)
     else window.alert('Please select atleast one icon')
   }
 
   const { selectAll, deselectAll } = props
-  const value = eosIconsState
 
   const [modal, setModal] = useState(false)
   const [serverResponse, setServerResponse] = useState(null)
@@ -47,14 +45,14 @@ const CustomizeIconsPanel = (props) => {
   }
 
   const generateFont = (e) => {
-    if (value.multipleIcons.length > 0) {
+    if (state.multipleIcons.length > 0) {
       e.preventDefault()
       modalToggle()
       sendData({
         url: `${ICON_PICKER_API_URL}/iconsapi${
           state.iconsTheme === 'outlined' ? '?theme=outlined' : ''
         }`,
-        payload: value.multipleIcons
+        payload: state.multipleIcons
       }).then(setServerResponse)
     } else {
       window.alert('Please select atleast one icon')
@@ -73,7 +71,7 @@ const CustomizeIconsPanel = (props) => {
           </div>
         </div>
         <div className='generate-div'>
-          <span>{value.multipleIcons.length} icons selected</span>
+          <span>{state.multipleIcons.length} icons selected</span>
           <span>Export as: </span>
           <Button type='submit' onClick={generateFont}>
             Font
@@ -104,7 +102,7 @@ const CustomizeIconsPanel = (props) => {
         <IconEditor
           isActive={iconEditor}
           show={iconEditorToggle}
-          iconNames={value.multipleIcons}
+          iconNames={state.multipleIcons}
         />
       ) : (
         ''

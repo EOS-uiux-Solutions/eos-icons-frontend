@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import eosIcon from '../public/assets/images/eos-icons-logo.svg'
+
+import { IconSetContext } from '../utils/IconSetContext'
 
 const NavLink = ({ href, children, ...props }) => {
   const { asPath } = useRouter()
@@ -15,6 +17,8 @@ const NavLink = ({ href, children, ...props }) => {
 }
 
 const Navigation = (props) => {
+  const router = useRouter()
+  const { iconDispatch } = useContext(IconSetContext)
   return (
     <header className='flex-wrap-sm navigation'>
       <div className='container navigation-content'>
@@ -25,7 +29,9 @@ const Navigation = (props) => {
               src={eosIcon}
               alt='eos-icons logo'
               onClick={() => {
-                props.resetIconSetState()
+                router.push('/')
+                window.scroll(0, 0)
+                iconDispatch({ type: 'RESET_TO_DEFAULT' })
               }}
             />
           </div>

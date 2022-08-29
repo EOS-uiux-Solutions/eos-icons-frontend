@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { AppContext } from '../utils/AppContext'
+import { IconSetContext } from '../utils/IconSetContext'
 import Button from './Button'
 import IconEditor from './IconEditor'
 import toast, { Toaster } from 'react-hot-toast'
 
 const HowToPanel = (props) => {
   const { show, close, iconName, type, iconTags } = props
+
+  const { iconDispatch } = useContext(IconSetContext)
   const ref = useRef()
   const [iconEditor, setIconEditor] = useState(false)
   const [iconType, setIconType] = useState('static')
@@ -148,6 +151,7 @@ const HowToPanel = (props) => {
                   key={key}
                   className='badge'
                   onClick={() => {
+                    iconDispatch({ type: 'SET_SEARCH_VALUE', payload: tag })
                     selectTag(
                       tag,
                       dispatch({
