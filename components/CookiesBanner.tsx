@@ -5,10 +5,10 @@ import Button from './Button'
 import Cookies from 'js-cookie'
 
 const CookiesBanner = () => {
-  const [cookiesBanner, setCookiesBanner] = useState(false)
+  const [cookiesBanner, setCookiesBanner] = useState<boolean>(false)
 
   /* Toggle customizable functionality */
-  const cookiesHandler = (callback) => {
+  const cookiesHandler = (callback: () => void) => {
     setCookiesBanner(true)
     return callback
   }

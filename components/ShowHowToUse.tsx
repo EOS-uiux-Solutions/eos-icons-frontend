@@ -1,13 +1,18 @@
 import React from 'react'
 import HowTo from './HowToPanel'
 
-const ShowHowToUse = ({
+interface ShowHowToUseProps {
+  tab: string
+  showPanel: boolean
+  iconSelected: { name: string; tags: string[] }
+  closeHowTo: () => void
+}
+
+const ShowHowToUse: React.FC<ShowHowToUseProps> = ({
   tab,
   showPanel,
   iconSelected,
-  closeHowTo,
-  setSearchValue,
-  theme
+  closeHowTo
 }) => {
   return tab === 'Static Icons' ? (
     <div>
@@ -16,19 +21,16 @@ const ShowHowToUse = ({
         iconName={iconSelected?.name}
         iconTags={iconSelected?.tags}
         type='static'
-        theme={theme}
         close={closeHowTo}
-        setSearchValue={setSearchValue}
       />
     </div>
   ) : (
     <HowTo
       show={showPanel}
       iconName={iconSelected?.name}
-      iconTags=''
+      iconTags={[]}
       type='animated'
       close={closeHowTo}
-      setSearchValue={setSearchValue}
     />
   )
 }

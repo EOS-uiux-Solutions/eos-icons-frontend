@@ -344,7 +344,7 @@ const IconEditor = (props) => {
       </div>
     </div>
   ) : (
-    ''
+    <></>
   )
 }
 

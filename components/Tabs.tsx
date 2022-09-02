@@ -5,19 +5,27 @@ import { AppContext } from '../utils/AppContext'
 import IconVersionToggle from './IconVersionToggle'
 import SHOW_THEME_SWITCH from '../config.json'
 
-const Tabs = (props) => {
-  const {
-    children,
-    setTab,
-    customize,
-    showPanel,
-    toggleCustomize,
-    showMultipleSwitch,
-    currentTab,
-    resetTabsState,
-    tabChangeHandler
-  } = props
+interface TabsProps {
+  children: JSX.Element[]
+  setTab?: (tab: string) => void
+  customize?: boolean
+  showPanel?: (tab: string) => void
+  toggleCustomize?: (callback: Function) => void
+  showMultipleSwitch: boolean
+  currentTab: string
+  tabChangeHandler: () => void
+}
 
+const Tabs: React.FC<TabsProps> = ({
+  children,
+  setTab,
+  customize,
+  showPanel,
+  toggleCustomize,
+  showMultipleSwitch,
+  currentTab,
+  tabChangeHandler
+}) => {
   const [activeTab, setActiveTab] = useState(currentTab)
   const [checked, setChecked] = useState(false)
   const [staticCheck, setStaticCheck] = useState(false)
@@ -30,7 +38,7 @@ const Tabs = (props) => {
   }, [currentTab])
 
   useEffect(() => {
-    setPosition(document.querySelector('.page-header').clientHeight + 54)
+    setPosition(document.querySelector('.page-header')!.clientHeight + 54)
   }, [customize, showPanel, windowsSize])
 
   useEffect(() => {
@@ -49,36 +57,25 @@ const Tabs = (props) => {
     setChecked(!checked)
   }, [activeTab, checked, currentTab])
 
-  const resetTabsStateFromNavbarLogo = useCallback(() => {
-    changeCheckedStatus()
-    dispatch({ type: 'RESET_CUSTOMIZE' })
-    setActiveTab(currentTab)
-    setChecked(false)
-    setStaticCheck(false)
-    setPosition(0)
-  }, [changeCheckedStatus, currentTab, dispatch])
-
-  useEffect(() => {
-    if (resetTabsState)
-      props.resetTabsStateRef.current = resetTabsStateFromNavbarLogo
-  }, [props.resetTabsStateRef, resetTabsState, resetTabsStateFromNavbarLogo])
-
   return (
     <div className='tabs'>
       <ul className='tab-list' style={{ top: position }}>
-        {children.map((child) => {
-          const { label } = child.props
+        {children!.map((child) => {
+          const { htmlFor } = child.props
           return (
             <li
               className={
-                activeTab === label
+                activeTab === htmlFor
                   ? 'tab-list-item tab-list-active'
                   : 'tab-list-item'
               }
-              key={label}
-              onClick={() => setActiveTab(label) || (setTab && setTab(label))}
+              key={htmlFor}
+              onClick={() => {
+                setActiveTab(htmlFor)
+                setTab && setTab(htmlFor)
+              }}
             >
-              {label}
+              {htmlFor}
             </li>
           )
         })}
@@ -97,13 +94,12 @@ const Tabs = (props) => {
               disabledStatus={activeTab === 'Animated Icons'}
               name='Select multiple'
               id='js-icon-picker'
-              activeTab={activeTab}
               checkedStatus={checked}
               onChange={() => {
                 changeCheckedStatus()
               }}
               onClick={() => {
-                toggleCustomize(dispatch({ type: 'TOGGLE_CUSTOMIZE' }))
+                toggleCustomize?.(dispatch({ type: 'TOGGLE_CUSTOMIZE' }))
               }}
             />
           </div>
@@ -113,8 +109,8 @@ const Tabs = (props) => {
       </ul>
 
       <div className='tab-content'>
-        {children.map((child) => {
-          if (child.props.label !== activeTab) return undefined
+        {children!.map((child) => {
+          if (child.props.htmlFor !== activeTab) return undefined
           return child.props.children
         })}
       </div>

@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react'
 
+interface windowsSize {
+  width: number
+  height: number
+  isScrolled: boolean
+  isMobile: boolean | undefined
+  isScrooledAndMobile?: boolean
+}
+
 export const useWindowsSize = () => {
-  const [state, setState] = useState({
+  const [state, setState] = useState<windowsSize>({
     width: 0,
     height: 0,
     isScrolled: false,
@@ -19,14 +27,14 @@ export const useWindowsSize = () => {
   }
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleWindows)
-      window.addEventListener('scroll', handleWindows)
+    if (typeof window === 'undefined') return
 
-      return () => {
-        window.removeEventListener('resize', handleWindows)
-        window.removeEventListener('handleScroll', handleWindows)
-      }
+    window.addEventListener('resize', handleWindows)
+    window.addEventListener('scroll', handleWindows)
+
+    return () => {
+      window.removeEventListener('resize', handleWindows)
+      window.removeEventListener('handleScroll', handleWindows)
     }
   }, [])
 

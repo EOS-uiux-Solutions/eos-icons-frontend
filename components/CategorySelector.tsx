@@ -1,7 +1,13 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../utils/AppContext'
 
-export const CategorySelector = ({ disabled }) => {
+interface CategorySelectorProps {
+  disabled: boolean
+}
+
+export const CategorySelector: React.FC<CategorySelectorProps> = ({
+  disabled
+}) => {
   const { state, dispatch } = useContext(AppContext)
 
   return (
@@ -19,7 +25,7 @@ export const CategorySelector = ({ disabled }) => {
       >
         <option value='all'>All</option>
 
-        {state.iconsCategoryList.map((ele, i) => {
+        {state.iconsCategoryList.map((ele: string, i: number) => {
           return (
             <option key={i} value={ele}>
               {ele}

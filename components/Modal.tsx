@@ -1,17 +1,26 @@
 import React from 'react'
 
-const Modal = (props) => {
-  const {
-    isActive,
-    show,
-    children,
-    cancelText,
-    okText,
-    onCancel,
-    onOk,
-    showButtons
-  } = props
+interface ModalProps {
+  isActive: boolean
+  show: () => void
+  children: React.ReactNode
+  cancelText?: string
+  okText?: string
+  onCancel?: () => void
+  onOk?: () => void
+  showButtons?: boolean
+}
 
+const Modal: React.FC<ModalProps> = ({
+  isActive,
+  show,
+  children,
+  cancelText,
+  okText,
+  onCancel,
+  onOk,
+  showButtons
+}) => {
   return isActive ? (
     <div className='modal'>
       <div className='modal-card'>
@@ -21,14 +30,12 @@ const Modal = (props) => {
           <div className='flex flex-row'>
             <div
               className='flex-content modal-btn modal-btn-cancel'
-              align='center'
               onClick={onCancel}
             >
               {cancelText || 'Cancel'}
             </div>
             <div
               className='flex-content modal-btn modal-btn-accept'
-              align='center'
               onClick={onOk}
             >
               {okText || 'Accept'}
@@ -38,7 +45,7 @@ const Modal = (props) => {
       </div>
     </div>
   ) : (
-    ''
+    <></>
   )
 }
 

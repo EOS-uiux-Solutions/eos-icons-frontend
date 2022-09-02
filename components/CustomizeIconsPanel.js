@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Button from './Button'
 import GeneratingFont from './GeneratingFont'
-import Modal from './Modal'
+import Modal from './Modal.tsx'
 import ThankYou from './ThankYou'
 import IconEditor from './IconEditor'
 import axios from 'axios'

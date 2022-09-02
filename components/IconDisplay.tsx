@@ -1,17 +1,30 @@
 import React from 'react'
 
-const Icon = (props) => {
-  const {
-    name,
-    size,
-    onClickAction,
-    onDoubleClickAction,
-    type,
-    active,
-    iconsTheme
-  } = props
+interface sizes {
+  [key: number]: string
+}
+
+interface iconProps {
+  name: string
+  size: number
+  onClickAction: () => void
+  onDoubleClickAction: () => void
+  type: 'static' | 'animated'
+  active: boolean
+  iconsTheme: 'outlined' | 'filled'
+}
+
+const Icon: React.FC<iconProps> = ({
+  name,
+  size,
+  onClickAction,
+  onDoubleClickAction,
+  type,
+  active,
+  iconsTheme
+}) => {
   /* Possible icon sizes */
-  const sizes = {
+  const sizes: sizes = {
     18: 'eos-18',
     24: 'eos-24',
     36: 'eos-36',

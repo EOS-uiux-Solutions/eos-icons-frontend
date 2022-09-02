@@ -16,20 +16,25 @@ const config = {
  * @example
  * <PageHeader theme="purple" size="small>
  */
-const PageHeader = (props) => {
+
+interface PageHeaderProps {
+  children?: React.ReactNode
+  simple?: boolean
+  showHeaderIcon?: boolean
+}
+
+const PageHeader: React.FC<PageHeaderProps> = ({
+  children,
+  simple,
+  showHeaderIcon
+}) => {
   const [windowsSize] = useWindow()
 
   /* We destructure the props pased to the component */
-  const { children, size: height, simple, showHeaderIcon } = props
   const { size } = config
-
   return (
     <div
-      className={
-        !simple
-          ? `page-header ${size[height] ?? size.small}`
-          : 'page-header-simple'
-      }
+      className={!simple ? `page-header ${size.small}` : 'page-header-simple'}
       style={{
         padding: windowsSize.isScrolled
           ? 0

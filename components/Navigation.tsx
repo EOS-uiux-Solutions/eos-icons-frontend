@@ -6,9 +6,14 @@ import eosIcon from '../public/assets/images/eos-icons-logo.svg'
 
 import { IconSetContext } from '../utils/IconSetContext'
 
-const NavLink = ({ href, children, ...props }) => {
-  const { asPath } = useRouter()
-  const className = asPath === href || asPath === props.as ? 'active' : ''
+interface NavLinkProps {
+  href: string
+  children: React.ReactNode
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
+  const { pathname } = useRouter()
+  const className = pathname === href ? 'active' : ''
   return (
     <Link href={href}>
       <a className={className}>{children}</a>
@@ -16,7 +21,7 @@ const NavLink = ({ href, children, ...props }) => {
   )
 }
 
-const Navigation = (props) => {
+const Navigation = () => {
   const router = useRouter()
   const { iconDispatch } = useContext(IconSetContext)
   return (

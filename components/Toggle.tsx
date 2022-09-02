@@ -1,8 +1,22 @@
 import React from 'react'
 
-const Toggle = (props) => {
-  const { onClick, onChange, name, id, checkedStatus, disabledStatus } = props
+interface ToggleProps {
+  onClick: () => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  name: string
+  id: string
+  checkedStatus: boolean
+  disabledStatus: boolean
+}
 
+const Toggle: React.FC<ToggleProps> = ({
+  onClick,
+  onChange,
+  name,
+  id,
+  checkedStatus,
+  disabledStatus
+}) => {
   return (
     <div className={`toggle ${disabledStatus ? 'disabled' : ''}`}>
       <span className='label-name'>{name}</span>

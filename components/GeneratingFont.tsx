@@ -2,7 +2,7 @@ import React from 'react'
 import loading from '../public/assets/images/loading.svg'
 import Image from 'next/image'
 
-const GeneratingFont = (props) => {
+const GeneratingFont: React.FC = () => {
   return (
     <div className='icons-picker-loading'>
       <div className='loading-icon'>

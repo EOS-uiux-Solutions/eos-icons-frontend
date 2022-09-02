@@ -10,10 +10,10 @@ import { iconSetState } from '../utils/IconSet.store'
 import Icon from '../components/IconDisplay'
 import Tabs from '../components/Tabs'
 import CustomizeIconsPanel from '../components/CustomizeIconsPanel'
-import ShowHowToUse from '../components/ShowHowToUse'
+import ShowHowToUse from '../components/ShowHowToUse.tsx'
 import PageHeader from '../components/PageHeader'
-import { CategorySelector } from '../components/CategorySelector'
-import { useWindowsSize } from '../hooks/useWindow'
+import { CategorySelector } from '../components/CategorySelector.tsx'
+import { useWindowsSize } from '../hooks/useWindow.tsx'
 import IconEditor from '../components/IconEditor'
 
 const IconsSet = (props) => {
@@ -131,7 +131,6 @@ const IconsSet = (props) => {
                   closeHowTo={() =>
                     iconDispatch({ type: 'CLOSE_HOWTO', router })
                   }
-                  theme={state.iconsTheme}
                 />
               </div>
             ) : (
@@ -186,7 +185,7 @@ const IconsSet = (props) => {
           }}
           showMultipleSwitch={true}
         >
-          <div label='Static Icons'>
+          <div htmlFor='Static Icons'>
             {iconState.emptySearchResult && (
               <div>
                 <h3 className='suggested-search-line'>
@@ -253,7 +252,7 @@ const IconsSet = (props) => {
               )
             })}
           </div>
-          <div label='Animated Icons'>
+          <div htmlFor='Animated Icons'>
             {iconState.searchValue !== '' && iconState.emptySearchResult && (
               <div>
                 <h3 className='suggested-search-line'>

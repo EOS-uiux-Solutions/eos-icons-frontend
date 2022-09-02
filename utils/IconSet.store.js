@@ -2,7 +2,7 @@ import { eosIconsState } from '../utils/EosIcons.store'
 
 export const iconSetState = {
   iconSelected: '',
-  showPanel: '',
+  showPanel: false,
   searchValue: '',
   tab: 'Static Icons',
   staticHistory: '',
@@ -27,7 +27,7 @@ export const iconSetState = {
   resetIconSetState: () => {
     return {
       iconSelected: '',
-      showPanel: '',
+      showPanel: false,
       searchValue: '',
       tab: 'Static Icons',
       staticHistory: '',

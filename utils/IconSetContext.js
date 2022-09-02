@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { iconSetReducer, iconSetState } from '../utils/IconSet.store.js'
+import { iconSetReducer, iconSetState } from './IconSet.store.js'
 
 export const IconSetContext = createContext()
 

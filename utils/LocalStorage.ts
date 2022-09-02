@@ -1,5 +1,5 @@
 export default {
-  read: (key) => {
+  read: (key: string) => {
     if (typeof window !== 'undefined') {
       const data = localStorage.getItem(key)
 
@@ -10,7 +10,7 @@ export default {
       }
     }
   },
-  write: (key, data) => {
+  write: (key: string, data: any) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(key, JSON.stringify(data))
     }

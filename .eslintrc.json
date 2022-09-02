@@ -15,5 +15,13 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/prop-types": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

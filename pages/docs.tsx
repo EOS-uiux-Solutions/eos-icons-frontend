@@ -70,7 +70,7 @@ const Docs = () => {
           currentTab={'In your application'}
           tabChangeHandler={colorizeCodeSnippet}
         >
-          <div label='In your application'>
+          <label htmlFor='In your application'>
             <div className='container'>
               <h2>Installing EOS icons</h2>
               <p>
@@ -319,8 +319,8 @@ const Docs = () => {
                 </a>
               </p>
             </div>
-          </div>
-          <div label='On your computer'>
+          </label>
+          <label htmlFor='On your computer'>
             <div className='container'>
               <h2>Download EOS icons</h2>
               <p>
@@ -477,8 +477,8 @@ const Docs = () => {
                 className='onyour-img-edit'
               />
             </div>
-          </div>
-          <div label='React'>
+          </label>
+          <label htmlFor='React'>
             <div className='container'>
               <h2>Installing EOS icons React</h2>
               <p>
@@ -714,8 +714,8 @@ export default App;`}</code>
                 </a>
               </p>
             </div>
-          </div>
-          <div label='Vue 2/3'>
+          </label>
+          <label htmlFor='Vue 2/3'>
             <div className='container'>
               <h2>Installing EOS icons for Vue 3</h2>
               <h3 className='padding-top-xs'>
@@ -999,7 +999,7 @@ export default {
                 </a>
               </p>
             </div>
-          </div>
+          </label>
         </Tabs>
       </div>
     </div>

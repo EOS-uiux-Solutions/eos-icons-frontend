@@ -5,22 +5,38 @@ import Button from './Button'
 import IconEditor from './IconEditor'
 import toast, { Toaster } from 'react-hot-toast'
 
-const HowToPanel = (props) => {
-  const { show, close, iconName, type, iconTags } = props
+interface HowToPanelProps {
+  show: boolean
+  close: () => void
+  iconName: string
+  type: 'static' | 'animated'
+  iconTags: string[]
+}
 
+const HowToPanel: React.FC<HowToPanelProps> = ({
+  show,
+  close,
+  iconName,
+  type,
+  iconTags
+}) => {
   const { iconDispatch } = useContext(IconSetContext)
-  const ref = useRef()
+  const ref = useRef<HTMLDivElement>(null)
   const [iconEditor, setIconEditor] = useState(false)
   const [iconType, setIconType] = useState('static')
-  const iconEditorToggle = (type) => {
+
+  const iconEditorToggle = (type: 'animated' | 'static') => {
     setIconType(type)
     setIconEditor(!iconEditor)
   }
 
   const { state, dispatch } = useContext(AppContext)
-  function useOnClickOrEsc(ref, handler) {
+  function useOnClickOrEsc(
+    ref: React.RefObject<HTMLDivElement>,
+    handler: (e: KeyboardEvent) => void
+  ) {
     useEffect(() => {
-      const listenerKeydown = (event) => {
+      const listenerKeydown = (event: KeyboardEvent) => {
         if (event.keyCode === 27) {
           handler(event)
         }
@@ -39,17 +55,18 @@ const HowToPanel = (props) => {
   if (typeof window !== 'undefined') {
     queryString = window.location.search
   }
-  const urlParams = new URLSearchParams(queryString)
-  const urlIconName = urlParams.get('iconName')
-  const urlTagName = urlParams.get('tagName')
+  const urlParams: URLSearchParams = new URLSearchParams(queryString)
+  const urlIconName: string | null = urlParams.get('iconName')
+  const urlTagName: string | null = urlParams.get('tagName')
 
-  let setSearchWithUrlParam = urlIconName && !iconName ? urlIconName : ''
+  let setSearchWithUrlParam: string | null =
+    urlIconName && !iconName ? urlIconName : ''
 
   if (setSearchWithUrlParam === '') {
     setSearchWithUrlParam = urlTagName
   }
 
-  const selectTag = (urlTagName, callback) => {
+  const selectTag = (urlTagName: string, callback: () => void) => {
     if (typeof window !== 'undefined') {
       window.history.replaceState(
         '',
@@ -88,13 +105,16 @@ const HowToPanel = (props) => {
                 <input
                   id='copy-code'
                   className='input-group-element'
-                  readOnly='readOnly'
+                  readOnly={true}
                   value={`<Image src='${iconName}.svg'/>`}
                 />
                 <Button
                   type='button'
                   onClick={() => {
-                    document.getElementById('copy-code').select()
+                    const element = document.getElementById(
+                      'copy-code'
+                    ) as HTMLInputElement
+                    element.select()
                     document.execCommand('copy')
                   }}
                 >
@@ -117,7 +137,7 @@ const HowToPanel = (props) => {
                 <input
                   id='copy-code'
                   className='input-group-element'
-                  readOnly='readOnly'
+                  readOnly={true}
                   value={
                     state.iconsTheme === 'filled'
                       ? `<i class='eos-icons'>${iconName}</i>`
@@ -127,7 +147,10 @@ const HowToPanel = (props) => {
                 <Button
                   type='button'
                   onClick={() => {
-                    document.getElementById('copy-code').select()
+                    const element = document.getElementById(
+                      'copy-code'
+                    ) as HTMLInputElement
+                    element.select()
                     document.execCommand('copy')
                     toast('HTML Tag Copied')
                   }}
@@ -177,12 +200,12 @@ const HowToPanel = (props) => {
             theme={state.iconsTheme}
           />
         ) : (
-          ''
+          <></>
         )}
       </div>
     </div>
   ) : (
-    ''
+    <></>
   )
 }
 

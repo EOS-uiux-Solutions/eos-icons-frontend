@@ -1,7 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 
-const socialMediaImg = {
+interface socialMediaImgMap {
+  [name: string]: string
+}
+
+const socialMediaImg: socialMediaImgMap = {
   twitter: require('../public/assets/images/social/twitter.svg'),
   linkedin: require('../public/assets/images/social/linkedin.svg'),
   git: require('../public/assets/images/social/git.svg'),
@@ -10,7 +14,34 @@ const socialMediaImg = {
   medium: require('../public/assets/images/social/medium.svg')
 }
 
-export const TeamBlock = ({ image, role, name, description, social }) => {
+interface TeamBlockProps {
+  image: string
+  role: string
+  name: string
+  description: string
+  social: {
+    title: string
+    link: string
+  }[]
+}
+
+interface ContributorsBlockProps {
+  image: string
+  role: string
+  name: string
+  social: {
+    title: string
+    link: string
+  }[]
+}
+
+export const TeamBlock: React.FC<TeamBlockProps> = ({
+  image,
+  role,
+  name,
+  description,
+  social
+}) => {
   return (
     <div className='team-member'>
       <Image src={image} alt={name} layout='fill' objectFit='contain' />
@@ -20,7 +51,7 @@ export const TeamBlock = ({ image, role, name, description, social }) => {
           <p>{description}</p>
           <div className='team-member-social'>
             <ul>
-              {social?.map((ele, i) => {
+              {social?.map((ele: any, i: number) => {
                 return (
                   <li key={i}>
                     <a
@@ -43,7 +74,12 @@ export const TeamBlock = ({ image, role, name, description, social }) => {
   )
 }
 
-export const ContributorsBlock = ({ image, name, role, social }) => {
+export const ContributorsBlock: React.FC<ContributorsBlockProps> = ({
+  image,
+  name,
+  role,
+  social
+}) => {
   return (
     <div className='team-contributor'>
       <div className='team-contributor-description'>
@@ -52,6 +88,7 @@ export const ContributorsBlock = ({ image, name, role, social }) => {
 
         <ul>
           {social?.map((ele, i) => {
+            console.log(ele, i)
             return (
               <li key={i}>
                 <a

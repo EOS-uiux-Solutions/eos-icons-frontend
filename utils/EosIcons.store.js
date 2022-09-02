@@ -1,5 +1,5 @@
 import eosIcons from 'eos-icons/dist/js/eos-icons.json'
-import animatedIcons from './AnimatedIcons.store.js'
+import animatedIcons from './AnimatedIcons.store'
 import Cookies from 'js-cookie'
 
 const staticIcons = eosIcons.filter((ele) => ele.type === 'static')
