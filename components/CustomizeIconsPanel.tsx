@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react'
 import Button from './Button'
 import GeneratingFont from './GeneratingFont'
-import Modal from './Modal.tsx'
+import Modal from './Modal'
 import ThankYou from './ThankYou'
 import IconEditor from './IconEditor'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { AppContext } from '../utils/AppContext'
 import ICON_PICKER_API_URL from '../config.json'
 
-const sendData = async (params) => {
+const sendData = async (params: { url: string; payload: string }) => {
   const { url, payload } = params
 
   const response = await axios.post(url, {
@@ -19,17 +19,22 @@ const sendData = async (params) => {
   return response.data
 }
 
-const downloadFont = (props) => {
+const downloadFont = (props: { timestamp: AxiosResponse | undefined }) => {
   const { timestamp } = props
   const downloadEndPoints = `${ICON_PICKER_API_URL}/download?ts=${timestamp}`
   return window.open(downloadEndPoints, '_blank')
 }
 
-const CustomizeIconsPanel = (props) => {
+interface CustomizeIconsPanelProps {
+  selectAll: () => void
+  deselectAll: () => void
+}
+
+const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
   const { state, dispatch } = useContext(AppContext)
   const [iconEditor, setIconEditor] = useState(false)
 
-  const iconEditorToggle = (e) => {
+  const iconEditorToggle = (e: MouseEvent) => {
     e.preventDefault()
     if (state.multipleIcons.length > 0) setIconEditor(!iconEditor)
     else window.alert('Please select atleast one icon')
@@ -38,13 +43,13 @@ const CustomizeIconsPanel = (props) => {
   const { selectAll, deselectAll } = props
 
   const [modal, setModal] = useState(false)
-  const [serverResponse, setServerResponse] = useState(null)
+  const [serverResponse, setServerResponse] = useState()
 
   const modalToggle = () => {
     setModal(!modal)
   }
 
-  const generateFont = (e) => {
+  const generateFont = (e: MouseEvent) => {
     if (state.multipleIcons.length > 0) {
       e.preventDefault()
       modalToggle()
@@ -73,10 +78,10 @@ const CustomizeIconsPanel = (props) => {
         <div className='generate-div'>
           <span>{state.multipleIcons.length} icons selected</span>
           <span>Export as: </span>
-          <Button type='submit' onClick={generateFont}>
+          <Button type='submit' onClick={generateFont as () => void}>
             Font
           </Button>
-          <Button type='button' onClick={iconEditorToggle}>
+          <Button type='button' onClick={iconEditorToggle as () => void}>
             Images
           </Button>
         </div>
@@ -93,7 +98,7 @@ const CustomizeIconsPanel = (props) => {
               accept='application/JSON'
               hidden
               name='file'
-              onChange={(event) => search(event.target.files[0], dispatch)}
+              onChange={(event) => search(event.target.files![0], dispatch)}
             />
           </div>
         </div>
@@ -101,7 +106,7 @@ const CustomizeIconsPanel = (props) => {
       {iconEditor ? (
         <IconEditor
           isActive={iconEditor}
-          show={iconEditorToggle}
+          show={iconEditorToggle as () => void}
           iconNames={state.multipleIcons}
         />
       ) : (
@@ -125,11 +130,11 @@ const CustomizeIconsPanel = (props) => {
   )
 }
 
-const search = (file, dispatch) => {
+const search = (file: File, dispatch: React.Dispatch<any>) => {
   const fileReader = new window.FileReader()
 
   fileReader.onload = function (fileData) {
-    const iconsArray = JSON.parse(fileData.target.result)
+    const iconsArray = JSON.parse(fileData.target!.result as string)
     let data = []
     try {
       // works for both versions for now

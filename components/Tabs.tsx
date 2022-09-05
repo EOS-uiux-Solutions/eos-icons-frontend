@@ -13,7 +13,7 @@ interface TabsProps {
   toggleCustomize?: (callback: Function) => void
   showMultipleSwitch: boolean
   currentTab: string
-  tabChangeHandler: () => void
+  tabChangeHandler?: () => void
 }
 
 const Tabs: React.FC<TabsProps> = ({

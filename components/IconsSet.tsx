@@ -7,21 +7,38 @@ import { IconSetContext } from '../utils/IconSetContext'
 import { iconSetState } from '../utils/IconSet.store'
 
 /* Components */
-import Icon from '../components/IconDisplay'
-import Tabs from '../components/Tabs'
-import CustomizeIconsPanel from '../components/CustomizeIconsPanel'
-import ShowHowToUse from '../components/ShowHowToUse.tsx'
-import PageHeader from '../components/PageHeader'
-import { CategorySelector } from '../components/CategorySelector.tsx'
-import { useWindowsSize } from '../hooks/useWindow.tsx'
-import IconEditor from '../components/IconEditor'
+import Icon from './IconDisplay'
+import Tabs from './Tabs'
+import CustomizeIconsPanel from './CustomizeIconsPanel'
+import ShowHowToUse from '../components/ShowHowToUse'
+import PageHeader from './PageHeader'
+import { CategorySelector } from '../components/CategorySelector'
+import { useWindowsSize } from '../hooks/useWindow'
+import IconEditor from './IconEditor'
 
-const IconsSet = (props) => {
+interface icon {
+  category: string[]
+  date: string
+  dateOutlined?: string
+  do: string
+  dont: string
+  hasOutlined?: boolean
+  name: string
+  tags: string[]
+  type: string
+}
+
+interface Category {
+  category: string
+  icons: icon[]
+}
+
+const IconsSet: React.FC = () => {
   const router = useRouter()
   const [size] = useWindowsSize()
   const { state, dispatch } = useContext(AppContext)
   const { iconState, iconDispatch } = useContext(IconSetContext)
-  const searchRef = useRef(null)
+  const searchRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!router.isReady) return
@@ -55,7 +72,7 @@ const IconsSet = (props) => {
               }`}
               onClick={() => {
                 if (iconState.searchValue.length > 0) {
-                  searchRef.current.value = ''
+                  searchRef.current!.value = ''
                   iconDispatch({ type: 'SET_TAG_SELECTED', payload: '' })
                   iconDispatch({ type: 'CLOSE_HOWTO', router })
                 }
@@ -161,13 +178,6 @@ const IconsSet = (props) => {
                 showPanel={iconState.showPanel}
                 iconSelected={iconState.iconSelected}
                 closeHowTo={() => iconDispatch({ type: 'CLOSE_HOWTO', router })}
-                setSearchValue={() =>
-                  iconDispatch({
-                    type: 'SET_SEARCH_VALUE',
-                    payload: ''
-                  })
-                }
-                theme={state.iconsTheme}
               />
             </div>
           )}
@@ -185,7 +195,7 @@ const IconsSet = (props) => {
           }}
           showMultipleSwitch={true}
         >
-          <div htmlFor='Static Icons'>
+          <label htmlFor='Static Icons'>
             {iconState.emptySearchResult && (
               <div>
                 <h3 className='suggested-search-line'>
@@ -212,47 +222,50 @@ const IconsSet = (props) => {
                 />
               </div>
             )}
-            {state.iconsCategory.map((categoryObject, index) => {
-              return categoryObject.icons.length > 0 ? (
-                <div key={index}>
-                  <h4 className='category'>{categoryObject.category}</h4>
-                  <div className='icons-list'>
-                    {categoryObject.icons.map((icon, i) => (
-                      <Icon
-                        size={36}
-                        active={iconSetState.isActive(
-                          icon.name,
-                          state,
-                          iconState.iconSelected
-                        )}
-                        key={icon.name}
-                        name={icon.name}
-                        iconsTheme={state.iconsTheme}
-                        type={'static'}
-                        onClickAction={() => {
-                          iconDispatch({
-                            type: 'SELECT_ICON',
-                            icon,
-                            router
-                          })
-                          return dispatch({
-                            type: state.customize ? 'ADD_MULTIPLE_ICONS' : '',
-                            selection: icon.name
-                          })
-                        }}
-                        onDoubleClickAction={() => {
-                          iconDispatch({ type: 'TOGGLE_ICONEDITOR' })
-                        }}
-                      />
-                    ))}
+            {console.log(state.iconsCategory[1].icons[0])}
+            {state.iconsCategory.map(
+              (categoryObject: Category, index: number) => {
+                return categoryObject.icons.length > 0 ? (
+                  <div key={index}>
+                    <h4 className='category'>{categoryObject.category}</h4>
+                    <div className='icons-list'>
+                      {categoryObject.icons.map((icon, i) => (
+                        <Icon
+                          size={36}
+                          active={iconSetState.isActive(
+                            icon.name,
+                            state,
+                            iconState.iconSelected
+                          )}
+                          key={icon.name}
+                          name={icon.name}
+                          iconsTheme={state.iconsTheme}
+                          type={'static'}
+                          onClickAction={() => {
+                            iconDispatch({
+                              type: 'SELECT_ICON',
+                              icon,
+                              router
+                            })
+                            return dispatch({
+                              type: state.customize ? 'ADD_MULTIPLE_ICONS' : '',
+                              selection: icon.name
+                            })
+                          }}
+                          onDoubleClickAction={() => {
+                            iconDispatch({ type: 'TOGGLE_ICONEDITOR' })
+                          }}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                ''
-              )
-            })}
-          </div>
-          <div htmlFor='Animated Icons'>
+                ) : (
+                  ''
+                )
+              }
+            )}
+          </label>
+          <label htmlFor='Animated Icons'>
             {iconState.searchValue !== '' && iconState.emptySearchResult && (
               <div>
                 <h3 className='suggested-search-line'>
@@ -280,10 +293,11 @@ const IconsSet = (props) => {
               </div>
             )}
             <div className='icons-list'>
-              {state.animatedIcons.map((icon, index) => (
+              {state.animatedIcons.map((icon: string, index: number) => (
                 <Icon
                   key={index}
                   name={icon}
+                  size={36}
                   type={'animated'}
                   active={icon === iconState.iconSelected?.name}
                   onClickAction={() => {
@@ -297,7 +311,7 @@ const IconsSet = (props) => {
                 />
               ))}
             </div>
-          </div>
+          </label>
         </Tabs>
         {iconState.iconEditor && (
           <IconEditor

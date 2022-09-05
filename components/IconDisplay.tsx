@@ -11,7 +11,7 @@ interface iconProps {
   onDoubleClickAction: () => void
   type: 'static' | 'animated'
   active: boolean
-  iconsTheme: 'outlined' | 'filled'
+  iconsTheme?: 'outlined' | 'filled'
 }
 
 const Icon: React.FC<iconProps> = ({

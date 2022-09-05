@@ -5,6 +5,7 @@ interface ButtonProps {
   primary?: boolean
   type?: 'button' | 'submit' | 'reset'
   customClass?: string
+  disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,7 +13,8 @@ const Button: React.FC<ButtonProps> = ({
   primary,
   type,
   onClick,
-  customClass
+  customClass,
+  disabled
 }) => {
   const btnClass = primary ? 'btn-primary' : 'btn-default'
   return (
@@ -20,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`btn ${btnClass} ${customClass}`}
       type={type}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

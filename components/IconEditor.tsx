@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { SketchPicker } from 'react-color'
 import Button from './Button'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import loading from '../public/assets/images/loading-white.svg'
 import { AppContext } from '../utils/AppContext'
 /* https://www.npmjs.com/package/react-svg the package to work with SVG's */
@@ -9,10 +9,22 @@ import { ReactSVG } from 'react-svg'
 import ICON_PICKER_API_URL from '../config.json'
 import Image from 'next/image'
 
-const IconEditor = (props) => {
+interface IconEditorProps {
+  isActive: boolean
+  show: () => void
+  iconNames: string[]
+  iconType?: string
+  theme?: string
+}
+
+const IconEditor: React.FC<IconEditorProps> = ({
+  isActive,
+  show,
+  iconNames,
+  iconType
+}) => {
   const apiBaseUrl = ICON_PICKER_API_URL
 
-  const { isActive, show, iconNames, iconType } = props
   const [currentPosition, setCurrentPosition] = useState(0)
   const [exportAs, setExportAs] = useState('svg')
   const [exportSize, setExportSize] = useState('512')
@@ -25,7 +37,7 @@ const IconEditor = (props) => {
   const [svgError, setSvgError] = useState(true)
   const { state } = useContext(AppContext)
 
-  const iconEditorRef = useRef()
+  const iconEditorRef = useRef<HTMLDivElement>()
 
   const exportSizes = [
     '18',
@@ -40,11 +52,11 @@ const IconEditor = (props) => {
   ]
   const exportTypes = ['svg']
   if (iconType !== 'animated') exportTypes.push('png')
-  const changeColor = (color) => {
+  const changeColor = (color: { hex: string }) => {
     setColor(color.hex)
   }
 
-  const rotateIcon = (angle) => {
+  const rotateIcon = (angle: number) => {
     angle += rotateAngle
     setRotateAngle(angle)
   }
@@ -53,19 +65,22 @@ const IconEditor = (props) => {
   //   setExportAs(document.getElementsByClassName('export-type')[0].value)
   // }
   const changeExportSize = () => {
-    setExportSize(document.getElementsByClassName('export-size')[0].value)
+    setExportSize(
+      (document.getElementsByClassName('export-size')[0] as HTMLInputElement)
+        .value
+    )
   }
-  const flipIconHorizontal = (e) => {
+  const flipIconHorizontal = (e: MouseEvent) => {
     e.preventDefault()
     setHorizontalFlip(!horizontalFlip)
   }
 
-  const flipIconVertical = (e) => {
+  const flipIconVertical = (e: MouseEvent) => {
     e.preventDefault()
     setVerticalFlip(!verticalFlip)
   }
 
-  const changePosition = (action) => {
+  const changePosition = (action: number) => {
     if (currentPosition === iconNames.length - 1 && action === 1)
       setCurrentPosition(0)
     else if (currentPosition === 0 && action === -1)
@@ -73,7 +88,9 @@ const IconEditor = (props) => {
     else setCurrentPosition(currentPosition + action)
   }
   useEffect(() => {
-    document.getElementsByClassName('icon-preview')[0].style.color = color
+    ;(
+      document.getElementsByClassName('icon-preview')[0] as HTMLInputElement
+    ).style.color = color
     try {
       document
         .getElementsByClassName('icon-preview')[0]
@@ -103,7 +120,7 @@ const IconEditor = (props) => {
       state.iconsTheme === 'outlined' ? '?theme=outlined' : ''
     }`
 
-    const fetchSvg = async (Url, iconArray) => {
+    const fetchSvg = async (Url: string, iconArray: string[]) => {
       const payload = {
         iconArray,
         customizationConfig: {
@@ -133,13 +150,13 @@ const IconEditor = (props) => {
     verticalFlip
   ])
 
-  const postDataToApi = async (params) => {
+  const postDataToApi = async (params: { url: string; payload: {} }) => {
     const { url, payload } = params
 
     const response = await axios.post(url, payload)
     return response.data
   }
-  const downloadCustomizedIcon = (props) => {
+  const downloadCustomizedIcon = (props: { timestamp: AxiosResponse }) => {
     const { timestamp } = props
     const downloadEndPoints = `${apiBaseUrl}/download?ts=${timestamp}`
     if (iconNames.length === 1) {
@@ -150,7 +167,7 @@ const IconEditor = (props) => {
     }
     return window.open(downloadEndPoints, '_blank')
   }
-  const generateCustomizedIcon = (e) => {
+  const generateCustomizedIcon = (e: MouseEvent) => {
     if (!generating) {
       e.preventDefault()
       setGenerate(true)
@@ -177,8 +194,11 @@ const IconEditor = (props) => {
 
   return isActive ? (
     <div className='icon-editor'>
-      <div className='icon-editor-card' ref={iconEditorRef}>
-        <div className='close' onClick={show} />
+      <div
+        className='icon-editor-card'
+        ref={iconEditorRef as React.RefObject<HTMLDivElement>}
+      >
+        <div className='close' onClick={show as () => void} />
         <h2>Customize Icon</h2>
         <div className='flex flex-row icon-editor-content'>
           <div>
@@ -198,7 +218,7 @@ const IconEditor = (props) => {
                     <input
                       id='copy-svg'
                       className='input-group-element'
-                      readOnly='readOnly'
+                      readOnly={true}
                       value={`${svgCode[currentPosition]}`}
                       disabled={!svgCode.length}
                     />
@@ -206,7 +226,11 @@ const IconEditor = (props) => {
                       type='button'
                       disabled={!svgCode.length}
                       onClick={() => {
-                        document.getElementById('copy-svg').select()
+                        ;(
+                          document.getElementById(
+                            'copy-svg'
+                          ) as HTMLInputElement
+                        ).select()
                         document.execCommand('copy')
                       }}
                     >
@@ -275,10 +299,10 @@ const IconEditor = (props) => {
               <div>
                 <p>Flip</p>
                 <div>
-                  <button onClick={flipIconHorizontal}>
+                  <button onClick={flipIconHorizontal as () => void}>
                     <i className='eos-icons'>flip</i>
                   </button>
-                  <button onClick={flipIconVertical}>
+                  <button onClick={flipIconVertical as () => void}>
                     <i className='eos-icons rotate-flip-icon'>flip</i>
                   </button>
                 </div>
@@ -324,7 +348,10 @@ const IconEditor = (props) => {
               ''
             )}
             <div className='export-btn'>
-              <Button type='button' onClick={generateCustomizedIcon}>
+              <Button
+                type='button'
+                onClick={generateCustomizedIcon as () => void}
+              >
                 {!generating ? (
                   <span>Export as {exportAs.toUpperCase()}</span>
                 ) : (

@@ -51,19 +51,30 @@ export const TeamBlock: React.FC<TeamBlockProps> = ({
           <p>{description}</p>
           <div className='team-member-social'>
             <ul>
-              {social?.map((ele: any, i: number) => {
-                return (
-                  <li key={i}>
-                    <a
-                      href={ele.link}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      <Image src={socialMediaImg[ele.title]} alt={ele.title} />
-                    </a>
-                  </li>
-                )
-              })}
+              {social?.map(
+                (
+                  ele: {
+                    title: string
+                    link: string
+                  },
+                  i: number
+                ) => {
+                  return (
+                    <li key={i}>
+                      <a
+                        href={ele.link}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <Image
+                          src={socialMediaImg[ele.title]}
+                          alt={ele.title}
+                        />
+                      </a>
+                    </li>
+                  )
+                }
+              )}
             </ul>
           </div>
         </div>

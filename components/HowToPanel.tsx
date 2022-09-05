@@ -194,7 +194,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
         {iconEditor ? (
           <IconEditor
             isActive={iconEditor}
-            show={iconEditorToggle}
+            show={iconEditorToggle as () => void}
             iconNames={[iconName]}
             iconType={iconType}
             theme={state.iconsTheme}
