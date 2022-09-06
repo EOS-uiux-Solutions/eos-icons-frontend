@@ -222,7 +222,6 @@ const IconsSet: React.FC = () => {
                 />
               </div>
             )}
-            {console.log(state.iconsCategory[1].icons[0])}
             {state.iconsCategory.map(
               (categoryObject: Category, index: number) => {
                 return categoryObject.icons.length > 0 ? (

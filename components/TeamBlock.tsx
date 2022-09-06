@@ -99,7 +99,6 @@ export const ContributorsBlock: React.FC<ContributorsBlockProps> = ({
 
         <ul>
           {social?.map((ele, i) => {
-            console.log(ele, i)
             return (
               <li key={i}>
                 <a

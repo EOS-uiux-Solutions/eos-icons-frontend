@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/index.js",
-    "pages/_app.tsx"
+    "pages/_app.tsx",
+    "utils/AppContext.js"
   ],
   "exclude": ["node_modules"]
 }

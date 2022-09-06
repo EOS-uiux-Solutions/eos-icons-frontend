@@ -234,7 +234,6 @@ export const iconSetState = {
     return {
       showPanel: false,
       searchValue: '',
-      sconSelected: '',
       selectMultiple: !selectMultiple,
       iconSelected: ''
     }
