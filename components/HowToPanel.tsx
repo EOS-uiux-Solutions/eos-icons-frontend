@@ -4,14 +4,7 @@ import { IconSetContext } from '../utils/IconSetContext'
 import Button from './Button'
 import IconEditor from './IconEditor'
 import toast, { Toaster } from 'react-hot-toast'
-
-interface HowToPanelProps {
-  show: boolean
-  close: () => void
-  iconName: string
-  type: 'static' | 'animated'
-  iconTags: string[]
-}
+import { HowToPanelProps } from '../interface'
 
 const HowToPanel: React.FC<HowToPanelProps> = ({
   show,

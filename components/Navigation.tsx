@@ -3,13 +3,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import eosIcon from '../public/assets/images/eos-icons-logo.svg'
-
 import { IconSetContext } from '../utils/IconSetContext'
-
-interface NavLinkProps {
-  href: string
-  children: React.ReactNode
-}
+import { NavLinkProps } from '../interface'
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   const { pathname } = useRouter()

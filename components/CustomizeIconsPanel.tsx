@@ -7,6 +7,7 @@ import IconEditor from './IconEditor'
 import axios, { AxiosResponse } from 'axios'
 import { AppContext } from '../utils/AppContext'
 import ICON_PICKER_API_URL from '../config.json'
+import { CustomizeIconsPanelProps } from '../interface'
 
 const sendData = async (params: { url: string; payload: string }) => {
   const { url, payload } = params
@@ -23,11 +24,6 @@ const downloadFont = (props: { timestamp: AxiosResponse | undefined }) => {
   const { timestamp } = props
   const downloadEndPoints = `${ICON_PICKER_API_URL}/download?ts=${timestamp}`
   return window.open(downloadEndPoints, '_blank')
-}
-
-interface CustomizeIconsPanelProps {
-  selectAll: () => void
-  deselectAll: () => void
 }
 
 const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {

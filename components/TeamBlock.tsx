@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-
+import { TeamBlockProps, ContributorsBlockProps } from '../interface'
 interface socialMediaImgMap {
   [name: string]: string
 }
@@ -12,27 +12,6 @@ const socialMediaImg: socialMediaImgMap = {
   dribbble: require('../public/assets/images/social/dribbble.svg'),
   behance: require('../public/assets/images/social/behance.svg'),
   medium: require('../public/assets/images/social/medium.svg')
-}
-
-interface TeamBlockProps {
-  image: string
-  role: string
-  name: string
-  description: string
-  social: {
-    title: string
-    link: string
-  }[]
-}
-
-interface ContributorsBlockProps {
-  image: string
-  role: string
-  name: string
-  social: {
-    title: string
-    link: string
-  }[]
 }
 
 export const TeamBlock: React.FC<TeamBlockProps> = ({

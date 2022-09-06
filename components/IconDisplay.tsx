@@ -1,20 +1,7 @@
 import React from 'react'
+import { IconProps } from '../interface'
 
-interface sizes {
-  [key: number]: string
-}
-
-interface iconProps {
-  name: string
-  size: number
-  onClickAction: () => void
-  onDoubleClickAction: () => void
-  type: 'static' | 'animated'
-  active: boolean
-  iconsTheme?: 'outlined' | 'filled'
-}
-
-const Icon: React.FC<iconProps> = ({
+const Icon: React.FC<IconProps> = ({
   name,
   size,
   onClickAction,
@@ -24,7 +11,9 @@ const Icon: React.FC<iconProps> = ({
   iconsTheme
 }) => {
   /* Possible icon sizes */
-  const sizes: sizes = {
+  const sizes: {
+    [key: number]: string
+  } = {
     18: 'eos-18',
     24: 'eos-24',
     36: 'eos-36',

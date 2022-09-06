@@ -1,5 +1,6 @@
 import React from 'react'
 import useWindow from '../hooks/useWindow'
+import { PageHeaderProps } from '../interface'
 
 /* Create a config object with the classes neded as the size and theme */
 const config = {
@@ -16,13 +17,6 @@ const config = {
  * @example
  * <PageHeader theme="purple" size="small>
  */
-
-interface PageHeaderProps {
-  children?: React.ReactNode
-  simple?: boolean
-  showHeaderIcon?: boolean
-}
-
 const PageHeader: React.FC<PageHeaderProps> = ({
   children,
   simple,

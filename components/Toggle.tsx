@@ -1,13 +1,5 @@
 import React from 'react'
-
-interface ToggleProps {
-  onClick: () => void
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  name: string
-  id: string
-  checkedStatus: boolean
-  disabledStatus: boolean
-}
+import { ToggleProps } from '../interface'
 
 const Toggle: React.FC<ToggleProps> = ({
   onClick,

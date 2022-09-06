@@ -1,9 +1,6 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../utils/AppContext'
-
-interface CategorySelectorProps {
-  disabled: boolean
-}
+import { CategorySelectorProps } from '../interface'
 
 export const CategorySelector: React.FC<CategorySelectorProps> = ({
   disabled

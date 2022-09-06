@@ -1,14 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-
-interface AboutBlockProps {
-  title: string
-  description: string
-  linkTo: string
-  linkTitle: string
-  image: string
-  reverse?: boolean
-}
+import { AboutBlockProps } from '../interface'
 
 export const AboutBlock: React.FC<AboutBlockProps> = ({
   title,

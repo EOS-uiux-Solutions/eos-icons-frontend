@@ -15,23 +15,7 @@ import PageHeader from './PageHeader'
 import { CategorySelector } from '../components/CategorySelector'
 import { useWindowsSize } from '../hooks/useWindow'
 import IconEditor from './IconEditor'
-
-interface icon {
-  category: string[]
-  date: string
-  dateOutlined?: string
-  do: string
-  dont: string
-  hasOutlined?: boolean
-  name: string
-  tags: string[]
-  type: string
-}
-
-interface Category {
-  category: string
-  icons: icon[]
-}
+import { Category } from '../interface'
 
 const IconsSet: React.FC = () => {
   const router = useRouter()

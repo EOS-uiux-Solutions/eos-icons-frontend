@@ -8,14 +8,7 @@ import { AppContext } from '../utils/AppContext'
 import { ReactSVG } from 'react-svg'
 import ICON_PICKER_API_URL from '../config.json'
 import Image from 'next/image'
-
-interface IconEditorProps {
-  isActive: boolean
-  show: () => void
-  iconNames: string[]
-  iconType?: string
-  theme?: string
-}
+import { IconEditorProps } from '../interface'
 
 const IconEditor: React.FC<IconEditorProps> = ({
   isActive,

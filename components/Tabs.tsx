@@ -4,17 +4,7 @@ import Toggle from './Toggle'
 import { AppContext } from '../utils/AppContext'
 import IconVersionToggle from './IconVersionToggle'
 import SHOW_THEME_SWITCH from '../config.json'
-
-interface TabsProps {
-  children: JSX.Element[]
-  setTab?: (tab: string) => void
-  customize?: boolean
-  showPanel?: (tab: string) => void
-  toggleCustomize?: (callback: Function) => void
-  showMultipleSwitch: boolean
-  currentTab: string
-  tabChangeHandler?: () => void
-}
+import { TabsProps } from '../interface'
 
 const Tabs: React.FC<TabsProps> = ({
   children,

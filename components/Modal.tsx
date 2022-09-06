@@ -1,15 +1,5 @@
 import React from 'react'
-
-interface ModalProps {
-  isActive: boolean
-  show: () => void
-  children: React.ReactNode
-  cancelText?: string
-  okText?: string
-  onCancel?: () => void
-  onOk?: () => void
-  showButtons?: boolean
-}
+import { ModalProps } from '../interface'
 
 const Modal: React.FC<ModalProps> = ({
   isActive,

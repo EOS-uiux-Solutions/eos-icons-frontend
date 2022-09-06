@@ -2,21 +2,7 @@ import React from 'react'
 import links from '../utils/Links.store'
 import Image from 'next/image'
 import Link from 'next/link'
-
-interface link {
-  name: string
-  href: string
-  category: string
-  action: string
-  label: string
-  target?: string
-}
-
-interface FooterBlockProps {
-  img?: any
-  title: string
-  links: link[]
-}
+import { FooterBlockProps } from '../interface'
 
 const Footer: React.FC = () => {
   return (

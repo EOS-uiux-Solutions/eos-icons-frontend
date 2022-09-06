@@ -1,12 +1,6 @@
 import React from 'react'
 import HowTo from './HowToPanel'
-
-interface ShowHowToUseProps {
-  tab: string
-  showPanel: boolean
-  iconSelected: { name: string; tags: string[] }
-  closeHowTo: () => void
-}
+import { ShowHowToUseProps } from '../interface'
 
 const ShowHowToUse: React.FC<ShowHowToUseProps> = ({
   tab,
