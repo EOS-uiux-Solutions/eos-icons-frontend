@@ -1,10 +1,16 @@
 import eosIcons from 'eos-icons/dist/js/eos-icons.json'
 import animatedIcons from './AnimatedIcons.store'
 import Cookies from 'js-cookie'
+import {
+  IconType,
+  Category,
+  eosIconsStateType,
+  eosIconsActionType
+} from '../interface'
 
-const staticIcons = eosIcons.filter((ele) => ele.type === 'static')
+const staticIcons: IconType[] = eosIcons.filter((ele) => ele.type === 'static')
 
-const categories = Array.from(
+const categories: (string | true)[] = Array.from(
   new Set(
     staticIcons.map((ele) => {
       if (typeof ele.category === 'string') return ele.category
@@ -15,7 +21,7 @@ const categories = Array.from(
   )
 ).sort()
 
-const iconsCategory = categories.map((category) => {
+const iconsCategory: Category[] = categories.map((category) => {
   return {
     category,
     icons: staticIcons
@@ -26,7 +32,7 @@ const iconsCategory = categories.map((category) => {
   }
 })
 
-function searchMutliple(element, searchArray) {
+function searchMutliple(element: string[], searchArray: string[]) {
   for (let i = 0; i < searchArray.length; i++) {
     if (element.includes(searchArray[i])) return true
   }
@@ -34,7 +40,7 @@ function searchMutliple(element, searchArray) {
 }
 
 /* EOS Icons state */
-export const eosIconsState = {
+export const eosIconsState: eosIconsStateType = {
   animatedIcons,
   icons: staticIcons,
   iconsCategory,
@@ -42,30 +48,32 @@ export const eosIconsState = {
   multipleIcons: [],
   customize: false,
   iconsTheme: 'filled',
-  cookiesToggle: false,
-  setMultipleIcons: (iconName, multipleIcons) => {
+  cookiesToggle: false
+}
+
+const eosIconsHelper = {
+  setMultipleIcons: (iconName: string, multipleIcons: string[]) => {
     const iconArray = multipleIcons.includes(iconName)
       ? multipleIcons.filter((i) => i !== iconName)
       : [...multipleIcons, iconName]
     return iconArray
   },
-  toggleCustomize: (customize, multipleIcons) => {
+  toggleCustomize: (customize: boolean, multipleIcons: string[]) => {
     /* Clear arrays when switching between customize */
     multipleIcons.splice(0, multipleIcons.length)
     return !customize
   },
-  selectAllTagsIcons: (tagName, iconsCategory) => {
+  selectAllTagsIcons: (tagName: string, iconsCategory: Category[]) => {
     if (tagName === 'all') return iconsCategory
-
     tagName = tagName.toLowerCase()
     return iconsCategory.map((ele) => {
       return {
         category: ele.category,
-        icons: ele.icons.filter((ele) => ele.tags.includes(tagName))
+        icons: ele.icons.filter((ele) => ele!.tags.includes(tagName))
       }
     })
   },
-  toggleCookies: (cookiesToggle) => {
+  toggleCookies: (cookiesToggle: boolean) => {
     Cookies.set('acceptance-remainder', 'true')
 
     const acceptanceStatus = Cookies.get('acceptance')
@@ -78,7 +86,11 @@ export const eosIconsState = {
     }
     return !cookiesToggle
   },
-  selectAllIcons: (search, icons, multipleIcons) => {
+  selectAllIcons: (
+    search: string,
+    icons: IconType[],
+    multipleIcons: string[]
+  ) => {
     multipleIcons.splice(0, multipleIcons.length)
     for (let i = 0; i < icons.length; i++) {
       if (icons[i].name.includes(search) || icons[i].tags.includes(search))
@@ -86,11 +98,11 @@ export const eosIconsState = {
     }
     return multipleIcons
   },
-  deselectAllIcons: (multipleIcons) => {
+  deselectAllIcons: (multipleIcons: string[]) => {
     multipleIcons.splice(0, multipleIcons.length)
     return multipleIcons
   },
-  setSearchRegularList: (value) => {
+  setSearchRegularList: (value: string) => {
     if (value === '' || value === undefined) {
       return iconsCategory.map((ele) => {
         return {
@@ -116,7 +128,7 @@ export const eosIconsState = {
     }
     keywordsArray = value.split(',')
 
-    const searchArray = []
+    const searchArray: string[] = []
 
     for (let i = 0; i < keywordsArray.length; i++) {
       keywordsArray[i] = keywordsArray[i].trim()
@@ -129,19 +141,19 @@ export const eosIconsState = {
         category: ele.category,
         icons: ele.icons.filter(
           (ele) =>
-            searchMutliple(ele.name, searchArray) ||
-            searchMutliple(ele.tags, searchArray)
+            searchMutliple([ele!.name], searchArray) ||
+            searchMutliple(ele!.tags, searchArray)
         )
       }
     })
   },
-  setSearchAnimatedList: (value, animatedIcons) => {
+  setSearchAnimatedList: (value: string, animatedIcons: string[]) => {
     return animatedIcons.filter(
       (animatedIcon) =>
         animatedIcon.includes(value.toLowerCase()) && animatedIcon
     )
   },
-  uploadPreviousSelection: (value, multipleIcons) => {
+  uploadPreviousSelection: (value: string[], multipleIcons: string[]) => {
     try {
       value.forEach((value) => {
         return !multipleIcons.includes(value) ? multipleIcons.push(value) : ''
@@ -151,19 +163,22 @@ export const eosIconsState = {
     }
     return multipleIcons
   },
-  setCategoryFilter: (value) => {
+  setCategoryFilter: (value: string) => {
     return value === 'all'
       ? iconsCategory
       : iconsCategory.filter((ele) => ele.category === value)
   }
 }
 
-export const iconsReducer = (state, action) => {
+export const iconsReducer = (
+  state: eosIconsStateType,
+  action: eosIconsActionType
+) => {
   switch (action.type) {
     case 'ADD_MULTIPLE_ICONS':
       return {
         ...state,
-        multipleIcons: eosIconsState.setMultipleIcons(
+        multipleIcons: eosIconsHelper.setMultipleIcons(
           action.selection,
           state.multipleIcons
         )
@@ -171,7 +186,7 @@ export const iconsReducer = (state, action) => {
     case 'TOGGLE_ICON_TAGS':
       return {
         ...state,
-        iconsCategory: eosIconsState.selectAllTagsIcons(
+        iconsCategory: eosIconsHelper.selectAllTagsIcons(
           action.selection,
           state.iconsCategory
         )
@@ -179,7 +194,7 @@ export const iconsReducer = (state, action) => {
     case 'TOGGLE_CUSTOMIZE':
       return {
         ...state,
-        customize: eosIconsState.toggleCustomize(
+        customize: eosIconsHelper.toggleCustomize(
           state.customize,
           state.multipleIcons
         )
@@ -192,7 +207,7 @@ export const iconsReducer = (state, action) => {
     case 'ADD_ALL_ICONS':
       return {
         ...state,
-        multipleIcons: eosIconsState.selectAllIcons(
+        multipleIcons: eosIconsHelper.selectAllIcons(
           action.search,
           state.icons,
           state.multipleIcons
@@ -201,17 +216,17 @@ export const iconsReducer = (state, action) => {
     case 'REMOVE_ALL_ICONS':
       return {
         ...state,
-        multipleIcons: eosIconsState.deselectAllIcons(state.multipleIcons)
+        multipleIcons: eosIconsHelper.deselectAllIcons(state.multipleIcons)
       }
     case 'TOGGLE_SEARCH_REGULAR_ICONS':
       return {
         ...state,
-        iconsCategory: eosIconsState.setSearchRegularList(action.search)
+        iconsCategory: eosIconsHelper.setSearchRegularList(action.search)
       }
     case 'TOGGLE_SEARCH_ANIMATED_ICONS':
       return {
         ...state,
-        animatedIcons: eosIconsState.setSearchAnimatedList(
+        animatedIcons: eosIconsHelper.setSearchAnimatedList(
           action.search,
           state.animatedIcons
         )
@@ -219,7 +234,7 @@ export const iconsReducer = (state, action) => {
     case 'UPLOAD_PREVIOUS_SELECTION':
       return {
         ...state,
-        multipleIcons: eosIconsState.uploadPreviousSelection(
+        multipleIcons: eosIconsHelper.uploadPreviousSelection(
           action.data,
           state.multipleIcons
         )
@@ -227,12 +242,12 @@ export const iconsReducer = (state, action) => {
     case 'TOGGLE_CUSTOMIZE_COOKIES':
       return {
         ...state,
-        cookiesToggle: eosIconsState.toggleCookies(state.cookiesToggle)
+        cookiesToggle: eosIconsHelper.toggleCookies(state.cookiesToggle)
       }
     case 'SET_CATEGORY_SELECTOR':
       return {
         ...state,
-        iconsCategory: eosIconsState.setCategoryFilter(action.category)
+        iconsCategory: eosIconsHelper.setCategoryFilter(action.category)
       }
     case 'SET_ICONS_THEME':
       return {

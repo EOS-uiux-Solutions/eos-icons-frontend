@@ -9,9 +9,8 @@ import { AppContext } from '../utils/AppContext'
 import ICON_PICKER_API_URL from '../config.json'
 import { CustomizeIconsPanelProps } from '../interface'
 
-const sendData = async (params: { url: string; payload: string }) => {
+const sendData = async (params: { url: string; payload: string[] }) => {
   const { url, payload } = params
-
   const response = await axios.post(url, {
     exportAs: 'font',
     icons: payload

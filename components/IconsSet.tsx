@@ -173,7 +173,7 @@ const IconsSet: React.FC = () => {
           customize={state.customize}
           showPanel={iconState.showPanel}
           currentTab={iconState.tab}
-          toggleCustomize={(callback) => {
+          toggleCustomize={(callback: () => void) => {
             iconDispatch({ type: 'TOGGLE_CUSTOMIZE', router })
             return callback
           }}
@@ -216,12 +216,12 @@ const IconsSet: React.FC = () => {
                         <Icon
                           size={36}
                           active={iconSetState.isActive(
-                            icon.name,
+                            icon!.name,
                             state,
                             iconState.iconSelected
                           )}
-                          key={icon.name}
-                          name={icon.name}
+                          key={icon!.name}
+                          name={icon!.name}
                           iconsTheme={state.iconsTheme}
                           type={'static'}
                           onClickAction={() => {
@@ -232,7 +232,7 @@ const IconsSet: React.FC = () => {
                             })
                             return dispatch({
                               type: state.customize ? 'ADD_MULTIPLE_ICONS' : '',
-                              selection: icon.name
+                              selection: icon!.name
                             })
                           }}
                           onDoubleClickAction={() => {

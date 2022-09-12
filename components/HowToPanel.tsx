@@ -59,7 +59,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
     setSearchWithUrlParam = urlTagName
   }
 
-  const selectTag = (urlTagName: string, callback: () => void) => {
+  const selectTag = (urlTagName: string, callback: void) => {
     if (typeof window !== 'undefined') {
       window.history.replaceState(
         '',

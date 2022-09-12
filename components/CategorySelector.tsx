@@ -22,9 +22,12 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
       >
         <option value='all'>All</option>
 
-        {state.iconsCategoryList.map((ele: string, i: number) => {
+        {state.iconsCategoryList.map((ele: string | true, i: number) => {
           return (
-            <option key={i} value={ele}>
+            <option
+              key={i}
+              value={ele as string | number | readonly string[] | undefined}
+            >
               {ele}
             </option>
           )

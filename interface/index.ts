@@ -55,7 +55,7 @@ export interface IconProps {
   onDoubleClickAction: () => void
   type: 'static' | 'animated'
   active: boolean
-  iconsTheme?: 'outlined' | 'filled'
+  iconsTheme?: string
 }
 
 export interface IconEditorProps {
@@ -67,20 +67,42 @@ export interface IconEditorProps {
 }
 
 export interface IconType {
-  category: string[]
+  category: string | string[]
   date: string
-  dateOutlined?: string
   do: string
   dont: string
-  hasOutlined?: boolean
   name: string
   tags: string[]
   type: string
+  dateOutlined?: string
+  hasOutlined?: boolean
+  label?: string
+  fileName?: string
 }
 
 export interface Category {
-  category: string
+  category: string | true
+  icons: (IconType | null)[]
+}
+
+export interface eosIconsStateType {
+  animatedIcons: string[]
   icons: IconType[]
+  iconsCategory: Category[]
+  iconsCategoryList: (string | true)[]
+  multipleIcons: string[]
+  customize: boolean
+  iconsTheme: string
+  cookiesToggle: boolean
+}
+
+export interface eosIconsActionType {
+  type: string
+  selection: string
+  search: string
+  data: string[]
+  category: string
+  action: string
 }
 
 export interface ModalProps {
@@ -117,7 +139,7 @@ export interface TabsProps {
   setTab?: (tab: string) => void
   customize?: boolean
   showPanel?: (tab: string) => void
-  toggleCustomize?: (callback: Function) => void
+  toggleCustomize?: Function
   showMultipleSwitch: boolean
   currentTab: string
   tabChangeHandler?: () => void
