@@ -10,6 +10,9 @@ import Image from 'next/image'
 import DownloadEOSicons from '../components/DownloadEOSicons'
 import { Helmet } from 'react-helmet'
 import scrollToTop from '../utils/scrollToTop'
+import EOSFigma from '../public/assets/images/docs/eos-figma.gif'
+import EOSXd from '../public/assets/images/docs/eos-adobe.gif'
+import Button from '../components/Button'
 
 const Docs = () => {
   const colorizeCodeSnippet = () => {
@@ -996,6 +999,164 @@ export default {
                 >
                   {' '}
                   https://github.com/EOS-uiux-Solutions
+                </a>
+              </p>
+            </div>
+          </label>
+          <label htmlFor='Figma'>
+            <div className='container'>
+              <h2>Installing EOS icons Plugin for Figma</h2>
+              <p>
+                EOS Icons is now available on Figma Marketplace. Download the
+                latest version of EOS Icons on your Figma and enjoy our icons.{' '}
+              </p>
+              <Button
+                onClick={() =>
+                  window.open(
+                    'https://www.figma.com/community/plugin/1131638845835688020/EOS-Icons/',
+                    '_blank'
+                  )
+                }
+              >
+                Get EOS Icons For Figma
+              </Button>
+              <h2>Using EOS Icons in Figma</h2>
+              <p>
+                Once you have installed the plugin, you can use the icons in
+                your Figma file. An example of usage is shown below{' '}
+              </p>
+              <Image
+                src={EOSFigma}
+                alt='Animation displaying how to use eos icons in design tool'
+                className='onyour-img-edit'
+              />
+              <h2>Default Icon Settings</h2>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <code>size</code>
+                    </td>
+                    <td>64px</td>
+                    <td>sets the size of icon</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code>color</code>
+                    </td>
+                    <td>black</td>
+                    <td>sets the color of icon</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code>rotate</code>
+                    </td>
+                    <td>0</td>
+                    <td>sets the rotation degree of icon</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                EOS icons for Figma is open source. Go to our GitHub repository
+                to find out more :
+                <a
+                  href='https://github.com/EOS-uiux-Solutions/eos-icons-figma'
+                  data-event-category='External link'
+                  data-event-action='Link to Github repository'
+                  data-event-label='Docs page'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='line-edit'
+                >
+                  {' '}
+                  https://github.com/EOS-uiux-Solutions/eos-icons-figma
+                </a>
+              </p>
+            </div>
+          </label>
+          <label htmlFor='Adobe Xd'>
+            <div className='container'>
+              <h2>Installing EOS icons Plugin for Adobe Xd</h2>
+              <p>
+                EOS Icons is now available on Adobe's Creative Cloud. Download
+                the latest version of EOS Icons on for Adobe Xd and enjoy our
+                icons.{' '}
+              </p>
+              <Button
+                onClick={() =>
+                  window.open(
+                    'https://exchange.adobe.com/creativecloud/plugindetails.html/app/cc/f7ecf6b5?pluginId=f7ecf6b5/',
+                    '_blank'
+                  )
+                }
+              >
+                Get EOS Icons For Adobe Xd
+              </Button>
+              <h2>Using EOS Icons in Adobe Xd</h2>
+              <p>
+                Once you have installed the plugin, you can use the icons in
+                your Xd file. An example of usage is shown below{' '}
+              </p>
+              <Image
+                src={EOSXd}
+                alt='Animation displaying how to use eos icons in design tool'
+                className='onyour-img-edit'
+              />
+              <h2>Default Icon Settings</h2>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <code>size</code>
+                    </td>
+                    <td>64px</td>
+                    <td>sets the size of icon</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code>color</code>
+                    </td>
+                    <td>black</td>
+                    <td>sets the color of icon</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code>rotate</code>
+                    </td>
+                    <td>0</td>
+                    <td>sets the rotation degree of icon</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                EOS icons for Adobe Xd is open source. Go to our GitHub
+                repository to find out more :
+                <a
+                  href='https://github.com/EOS-uiux-Solutions/eos-icons-adobe-xd'
+                  data-event-category='External link'
+                  data-event-action='Link to Github repository'
+                  data-event-label='Docs page'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='line-edit'
+                >
+                  {' '}
+                  https://github.com/EOS-uiux-Solutions/eos-icons-adobe-xd
                 </a>
               </p>
             </div>
