@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 // import { useRouter } from 'next/router'
 import { AppContext } from '../utils/AppContext'
 import { IconSetContext } from '../utils/IconSetContext'
-import { iconSetState } from '../utils/IconSet.store'
+import { iconSetHelper } from '../utils/IconSet.store'
 
 /* Components */
 import Icon from './IconDisplay'
@@ -87,7 +87,7 @@ const IconsSet: React.FC = () => {
                   iconDispatch({ type: 'CLOSE_HOWTO', router })
                 }
 
-                const count = iconSetState.getSearchResults(
+                const count = iconSetHelper.getSearchResults(
                   event.target.value,
                   iconState.tab
                 )
@@ -215,7 +215,7 @@ const IconsSet: React.FC = () => {
                       {categoryObject.icons.map((icon, i) => (
                         <Icon
                           size={36}
-                          active={iconSetState.isActive(
+                          active={iconSetHelper.isActive(
                             icon!.name,
                             state,
                             iconState.iconSelected
@@ -284,7 +284,11 @@ const IconsSet: React.FC = () => {
                   type={'animated'}
                   active={icon === iconState.iconSelected?.name}
                   onClickAction={() => {
-                    iconDispatch({ type: 'SELECT_ANIMATED_ICON', icon, router })
+                    iconDispatch({
+                      type: 'SELECT_ANIMATED_ICON',
+                      iconAnimated: icon,
+                      router
+                    })
                   }}
                   onDoubleClickAction={() =>
                     iconDispatch({

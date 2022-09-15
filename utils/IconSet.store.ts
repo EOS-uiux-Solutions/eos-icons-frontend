@@ -1,7 +1,16 @@
-import { eosIconsState } from '../utils/EosIcons.store'
+import { eosIconsState } from './EosIcons.store'
+import type { Router } from 'next/router'
+import {
+  eosIconsStateType,
+  IconType,
+  SelectedIconType,
+  iconSetStateType,
+  iconSetActionType
+} from '../interface'
+import React from 'react'
 
-export const iconSetState = {
-  iconSelected: '',
+export const iconSetState: iconSetStateType = {
+  iconSelected: { name: '', tags: [] },
   showPanel: false,
   searchValue: '',
   tab: 'Static Icons',
@@ -12,13 +21,15 @@ export const iconSetState = {
   suggestedString: '',
   iconEditor: false,
   userSearchInput: false,
-  tagSelected: '',
+  tagSelected: ''
+}
 
-  iconEditorToggle: (iconEditor) => {
+export const iconSetHelper = {
+  iconEditorToggle: (iconEditor: boolean) => {
     return !iconEditor
   },
 
-  handleKeyPress: (event) => {
+  handleKeyPress: (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
       return true
     }
@@ -26,7 +37,7 @@ export const iconSetState = {
 
   resetIconSetState: () => {
     return {
-      iconSelected: '',
+      iconSelected: { name: '', tags: [] },
       showPanel: false,
       searchValue: '',
       tab: 'Static Icons',
@@ -41,7 +52,11 @@ export const iconSetState = {
     }
   },
 
-  setSuggestedString: (emptySearchResult, tab, searchValue) => {
+  setSuggestedString: (
+    emptySearchResult: boolean,
+    tab: string,
+    searchValue: string
+  ) => {
     if (emptySearchResult && searchValue) {
       let minimum = 100
       let suggestedString
@@ -52,13 +67,13 @@ export const iconSetState = {
             j < eosIconsState.iconsCategory[i].icons.length;
             j++
           ) {
-            const currentDistance = iconSetState.editDistance(
+            const currentDistance = iconSetHelper.editDistance(
               searchValue,
-              eosIconsState.iconsCategory[i].icons[j].name
+              eosIconsState.iconsCategory[i].icons[j]!.name
             )
             if (currentDistance < minimum) {
               minimum = currentDistance
-              suggestedString = eosIconsState.iconsCategory[i].icons[j].name
+              suggestedString = eosIconsState.iconsCategory[i].icons[j]!.name
             }
           }
         }
@@ -67,7 +82,7 @@ export const iconSetState = {
         let minimum = 100
         let suggestedString
         for (let i = 0; i < eosIconsState.animatedIcons.length; i++) {
-          const currentDistance = iconSetState.editDistance(
+          const currentDistance = iconSetHelper.editDistance(
             searchValue,
             eosIconsState.animatedIcons[i]
           )
@@ -81,7 +96,12 @@ export const iconSetState = {
     }
   },
 
-  resetOnEmptySearchValue: (searchValue, dispatch, tab, router) => {
+  resetOnEmptySearchValue: (
+    searchValue: string,
+    dispatch: React.Dispatch<any>,
+    tab: string,
+    router: Router
+  ) => {
     if (searchValue === '' || searchValue === null) {
       dispatch({
         type:
@@ -90,12 +110,12 @@ export const iconSetState = {
             : 'TOGGLE_SEARCH_ANIMATED_ICONS',
         search: ''
       })
-      iconSetState.closeHowTo(router)
+      iconSetHelper.closeHowTo(router)
       return { userSearchInput: false, emptySearchResult: false }
     }
   },
 
-  editDistance: (string1, string2) => {
+  editDistance: (string1: string, string2: string) => {
     if (string2.length > string1.length) {
       string2 = string2.slice(0, string1.length)
     }
@@ -119,7 +139,7 @@ export const iconSetState = {
     return dp[m][n]
   },
 
-  setTagInSearch: (router, dispatch) => {
+  setTagInSearch: (router: Router, dispatch: React.Dispatch<any>) => {
     const urlTagName = router.query.tagName
     return dispatch({
       type: 'TOGGLE_SEARCH_REGULAR_ICONS',
@@ -127,16 +147,21 @@ export const iconSetState = {
     })
   },
 
-  closeHowTo: (router) => {
+  closeHowTo: (router: Router) => {
     router.push('/', undefined, { scroll: false })
     return {
       searchValue: '',
       showPanel: false,
-      iconSelected: ''
+      iconSelected: { name: '', tags: [] }
     }
   },
 
-  suggestionSearch: (suggestedString, tab, dispatch, router) => {
+  suggestionSearch: (
+    suggestedString: string,
+    tab: string,
+    dispatch: React.Dispatch<any>,
+    router: Router
+  ) => {
     dispatch({
       type:
         tab === 'Static Icons'
@@ -146,12 +171,16 @@ export const iconSetState = {
     })
     return {
       emptySearchResult: false,
-      searchValue: suggestedString,
-      ...iconSetState.closeHowTo(router)
+      ...iconSetHelper.closeHowTo(router),
+      searchValue: suggestedString
     }
   },
 
-  isActive: (current, appState, iconSelected) => {
+  isActive: (
+    current: string,
+    appState: eosIconsStateType,
+    iconSelected: SelectedIconType
+  ) => {
     if (appState.customize) {
       return appState.multipleIcons.indexOf(current) >= 0
     } else {
@@ -159,7 +188,7 @@ export const iconSetState = {
     }
   },
 
-  populateStateWithURLParams: (router, searchValue) => {
+  populateStateWithURLParams: (router: Router, searchValue: string) => {
     const tagName = router.query.tagName
     const iconName = router.query.iconName
     const tabType = router.query.type
@@ -173,7 +202,14 @@ export const iconSetState = {
       const iconDetails =
         tabType === 'static'
           ? eosIconsState.icons.filter((icon) => icon.name === iconName)
-          : eosIconsState.animatedIcons.filter((icon) => icon === iconName)
+          : eosIconsState.animatedIcons
+              .filter((icon) => icon === iconName)
+              .map((icon) => {
+                return {
+                  icon: iconName,
+                  tags: []
+                }
+              })
 
       if (iconDetails.length) {
         const iconObj = { name: iconName, tags: iconDetails[0].tags }
@@ -188,7 +224,12 @@ export const iconSetState = {
     router.push('/')
   },
 
-  selectIcon: (icon, iconSelected, selectMultiple, router) => {
+  selectIcon: (
+    icon: IconType,
+    iconSelected: SelectedIconType,
+    selectMultiple: boolean,
+    router: Router
+  ) => {
     if (selectMultiple) {
       const iconObj = { name: icon.name, tags: icon.tags }
       const setIconSelected =
@@ -211,11 +252,11 @@ export const iconSetState = {
   },
 
   selectAnimatedIcon: (
-    icon,
-    iconSelected,
-    searchValue,
-    selectMultiple,
-    router
+    icon: string,
+    iconSelected: SelectedIconType,
+    searchValue: string,
+    selectMultiple: boolean,
+    router: Router
   ) => {
     if (selectMultiple) {
       router.push({
@@ -223,30 +264,36 @@ export const iconSetState = {
       })
     }
     return {
-      iconSelected: { name: icon } === iconSelected ? '' : { name: icon },
-      showPanel: { name: icon } !== iconSelected,
+      iconSelected:
+        JSON.stringify({ name: icon, tags: [] }) ===
+        JSON.stringify(iconSelected)
+          ? { name: '', tags: [] }
+          : { name: icon, tags: [] },
+      showPanel:
+        JSON.stringify({ name: icon, tags: [] }) !==
+        JSON.stringify(iconSelected),
       searchValue: icon === searchValue ? '' : icon
     }
   },
 
-  toggleCustomize: (selectMultiple, router) => {
+  toggleCustomize: (selectMultiple: boolean, router: Router) => {
     router.push('/')
     return {
       showPanel: false,
       searchValue: '',
       selectMultiple: !selectMultiple,
-      iconSelected: ''
+      iconSelected: { name: '', tags: [] }
     }
   },
 
   tabSwitch: (
-    e,
-    tab,
-    iconSelected,
-    staticHistory,
-    animatedHistory,
-    searchValue,
-    router
+    e: string,
+    tab: string,
+    iconSelected: SelectedIconType,
+    staticHistory: string,
+    animatedHistory: string,
+    searchValue: string,
+    router: Router
   ) => {
     if (e !== tab) {
       if (e === 'Static Icons') {
@@ -255,8 +302,8 @@ export const iconSetState = {
           return {
             tab: e,
             animatedHistory: iconSelected,
-            searchValue: storeSearchValue,
-            ...iconSetState.closeHowTo(router)
+            ...iconSetHelper.closeHowTo(router),
+            searchValue: storeSearchValue
           }
         } else {
           return {
@@ -272,8 +319,8 @@ export const iconSetState = {
           return {
             tab: e,
             staticHistory: iconSelected,
-            searchValue: storeSearchValue,
-            ...iconSetState.closeHowTo(router)
+            ...iconSetHelper.closeHowTo(router),
+            searchValue: storeSearchValue
           }
         } else {
           return {
@@ -288,7 +335,7 @@ export const iconSetState = {
     return { iconsSelected: iconSelected }
   },
 
-  getWords: (values) => {
+  getWords: (values: string) => {
     if (values === undefined) return
     let keywordsArray = []
     if (values.includes(';')) {
@@ -307,12 +354,12 @@ export const iconSetState = {
     return keywordsArray
   },
 
-  getSearchResults: (value, tab) => {
-    const words = iconSetState.getWords(value)
+  getSearchResults: (value: string, tab: string) => {
+    const words = iconSetHelper.getWords(value)
     if (tab === 'Static Icons') {
       let count = 0
-      for (let k = 0; k < words.length; k++) {
-        if (words[k].length === 0) {
+      for (let k = 0; k < words!.length; k++) {
+        if (words![k].length === 0) {
           continue
         }
         for (let i = 0; i < eosIconsState.iconsCategory.length; i++) {
@@ -323,8 +370,8 @@ export const iconSetState = {
           ) {
             const icon = eosIconsState.iconsCategory[i].icons[j]
             if (
-              icon.name.includes(words[k].toLowerCase()) ||
-              icon.tags.includes(words[k].toLowerCase())
+              icon!.name.includes(words![k].toLowerCase()) ||
+              icon!.tags.includes(words![k].toLowerCase())
             ) {
               count += 1
             }
@@ -344,48 +391,50 @@ export const iconSetState = {
   }
 }
 
-export const iconSetReducer = (state, action) => {
+export const iconSetReducer = (
+  state: iconSetStateType,
+  action: iconSetActionType
+) => {
   switch (action.type) {
     case 'TOGGLE_ICONEDITOR':
       return {
         ...state,
-        iconEditor: iconSetState.iconEditorToggle(state.iconEditor)
-      }
+        iconEditor: iconSetHelper.iconEditorToggle(state.iconEditor)
+      } as iconSetStateType
     case 'HANDLE_KEYPRESS':
       return {
         ...state,
-        uerSearchInput: iconSetState.handleKeyPress(action.event)
-      }
+        uerSearchInput: iconSetHelper.handleKeyPress(action.event)
+      } as iconSetStateType
     case 'CLOSE_HOWTO':
       return {
         ...state,
-
-        ...iconSetState.closeHowTo(action.router)
-      }
+        ...iconSetHelper.closeHowTo(action.router)
+      } as iconSetStateType
     case 'SEARCH_SUGGESTION':
       return {
         ...state,
-        ...iconSetState.suggestionSearch(
+        ...iconSetHelper.suggestionSearch(
           state.suggestedString,
           state.tab,
           action.dispatch,
           action.router
         )
-      }
+      } as iconSetStateType
     case 'SELECT_ICON':
       return {
         ...state,
-        ...iconSetState.selectIcon(
+        ...iconSetHelper.selectIcon(
           action.icon,
           state.iconSelected,
           state.selectMultiple,
           action.router
         )
-      }
+      } as iconSetStateType
     case 'TAB_SWITCH':
       return {
         ...state,
-        ...iconSetState.tabSwitch(
+        ...iconSetHelper.tabSwitch(
           action.e,
           state.tab,
           state.iconSelected,
@@ -394,74 +443,72 @@ export const iconSetReducer = (state, action) => {
           state.searchValue,
           action.router
         )
-      }
+      } as iconSetStateType
     case 'TOGGLE_CUSTOMIZE':
       return {
         ...state,
-        ...iconSetState.toggleCustomize(state.selectMultiple, action.router)
-      }
+        ...iconSetHelper.toggleCustomize(state.selectMultiple, action.router)
+      } as iconSetStateType
     case 'SELECT_ANIMATED_ICON':
       return {
         ...state,
-        ...iconSetState.selectAnimatedIcon(
-          action.icon,
+        ...iconSetHelper.selectAnimatedIcon(
+          action.iconAnimated,
           state.iconSelected,
           state.searchValue,
           state.selectMultiple,
           action.router
         )
-      }
+      } as iconSetStateType
     case 'RESET_TO_DEFAULT':
       return {
         ...state,
-        ...iconSetState.resetIconSetState()
-      }
+        ...iconSetHelper.resetIconSetState()
+      } as iconSetStateType
     case 'SET_SUGGESTED_STRING':
       return {
         ...state,
-        suggestedString: iconSetState.setSuggestedString(
+        suggestedString: iconSetHelper.setSuggestedString(
           state.emptySearchResult,
           state.tab,
           state.searchValue
         )
-      }
+      } as iconSetStateType
     case 'RESET_STATE_ON_EMPTY_SEARCH_VALUE':
       return {
         ...state,
-        ...iconSetState.resetOnEmptySearchValue(
+        ...iconSetHelper.resetOnEmptySearchValue(
           state.searchValue,
           action.dispatch,
           state.tab,
-          action.router,
-          state.emptySearchResult,
-          state.userSearchInput
+          action.router
         )
-      }
+      } as iconSetStateType
     case 'SET_SEARCH_VALUE':
       return {
         ...state,
         searchValue: action.payload ? action.payload : state.searchValue
-      }
+      } as iconSetStateType
     case 'SET_TAG_SELECTED':
       return {
         ...state,
         tagSelected: action.payload ? action.payload : state.tagSelected
-      }
+      } as iconSetStateType
     case 'SET_EMPTY_SEARCH_RESULT':
       return {
         ...state,
         emptySearchResult: action.payload
           ? action.payload
           : state.emptySearchResult
-      }
+      } as iconSetStateType
     case 'POPULATE_STATE_WITH_URL_PARAMS':
       return {
         ...state,
-        ...iconSetState.populateStateWithURLParams(
+        ...iconSetHelper.populateStateWithURLParams(
           action.router,
           state.searchValue
         )
-      }
+      } as iconSetStateType
 
     default:
       return { ...state }

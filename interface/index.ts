@@ -1,3 +1,4 @@
+import type { Router } from 'next/router'
 export interface AboutBlockProps {
   title: string
   description: string
@@ -127,18 +128,49 @@ export interface PageHeaderProps {
   showHeaderIcon?: boolean
 }
 
+export interface SelectedIconType {
+  name: string
+  tags: string[]
+}
+
+export interface iconSetStateType {
+  iconSelected: SelectedIconType
+  showPanel: boolean
+  searchValue: string
+  tab: string
+  staticHistory: string
+  animatedHistory: string
+  selectMultiple: boolean
+  emptySearchResult: boolean
+  suggestedString: string
+  iconEditor: boolean
+  userSearchInput: boolean
+  tagSelected: string
+}
+
 export interface ShowHowToUseProps {
   tab: string
   showPanel: boolean
-  iconSelected: { name: string; tags: string[] }
+  iconSelected: SelectedIconType
   closeHowTo: () => void
+}
+
+export interface iconSetActionType {
+  type: string
+  event: KeyboardEvent
+  router: Router
+  dispatch: React.Dispatch<any>
+  icon: IconType
+  iconAnimated: string
+  e: string
+  payload: string
 }
 
 export interface TabsProps {
   children: JSX.Element[]
   setTab?: (tab: string) => void
   customize?: boolean
-  showPanel?: (tab: string) => void
+  showPanel?: boolean
   toggleCustomize?: Function
   showMultipleSwitch: boolean
   currentTab: string

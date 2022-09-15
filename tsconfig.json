@@ -13,7 +13,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "pretty": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -28,7 +28,8 @@
     "**/*.tsx",
     "pages/index.js",
     "pages/_app.tsx",
-    "utils/AppContext.jsx"
+    "utils/AppContext.jsx",
+    "utils/IconSetContext.tsx"
   ],
   "exclude": ["node_modules"]
 }
