@@ -8,9 +8,8 @@ const CookiesBanner = () => {
   const [cookiesBanner, setCookiesBanner] = useState<boolean>(false)
 
   /* Toggle customizable functionality */
-  const cookiesHandler = (callback: void) => {
+  const cookiesHandler = () => {
     setCookiesBanner(true)
-    return callback
   }
 
   useEffect(() => {
@@ -45,9 +44,12 @@ const CookiesBanner = () => {
                 Edit preferences
               </Link>
               <Button
-                onClick={() =>
-                  cookiesHandler(dispatch({ type: 'TOGGLE_CUSTOMIZE_COOKIES' }))
-                }
+                onClick={() => {
+                  cookiesHandler()
+                  dispatch({
+                    type: 'TOGGLE_CUSTOMIZE_COOKIES'
+                  })
+                }}
                 primary
                 customClass='js-cookies-accept'
               >

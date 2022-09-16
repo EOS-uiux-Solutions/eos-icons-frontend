@@ -29,7 +29,7 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
   const { state, dispatch } = useContext(AppContext)
   const [iconEditor, setIconEditor] = useState(false)
 
-  const iconEditorToggle = (e: MouseEvent) => {
+  const iconEditorToggle = (e: React.MouseEvent) => {
     e.preventDefault()
     if (state.multipleIcons.length > 0) setIconEditor(!iconEditor)
     else window.alert('Please select atleast one icon')
@@ -44,7 +44,7 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
     setModal(!modal)
   }
 
-  const generateFont = (e: MouseEvent) => {
+  const generateFont = (e: React.MouseEvent) => {
     if (state.multipleIcons.length > 0) {
       e.preventDefault()
       modalToggle()
@@ -73,10 +73,10 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
         <div className='generate-div'>
           <span>{state.multipleIcons.length} icons selected</span>
           <span>Export as: </span>
-          <Button type='submit' onClick={generateFont as () => void}>
+          <Button type='submit' onClick={generateFont}>
             Font
           </Button>
-          <Button type='button' onClick={iconEditorToggle as () => void}>
+          <Button type='button' onClick={iconEditorToggle}>
             Images
           </Button>
         </div>
@@ -101,7 +101,7 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
       {iconEditor ? (
         <IconEditor
           isActive={iconEditor}
-          show={iconEditorToggle as () => void}
+          show={iconEditorToggle}
           iconNames={state.multipleIcons}
         />
       ) : (

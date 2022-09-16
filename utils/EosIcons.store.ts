@@ -1,12 +1,8 @@
 import eosIcons from 'eos-icons/dist/js/eos-icons.json'
 import animatedIcons from './AnimatedIcons.store'
 import Cookies from 'js-cookie'
-import {
-  IconType,
-  Category,
-  eosIconsStateType,
-  eosIconsActionType
-} from '../interface'
+import { IconType, Category, eosIconsStateType } from '../interface'
+import { eosIconsActionType } from '../types'
 
 const staticIcons: IconType[] = eosIcons.filter((ele) => ele.type === 'static')
 
@@ -175,22 +171,31 @@ export const iconsReducer = (
   action: eosIconsActionType
 ) => {
   switch (action.type) {
-    case 'ADD_MULTIPLE_ICONS':
-      return {
-        ...state,
-        multipleIcons: eosIconsHelper.setMultipleIcons(
-          action.selection,
-          state.multipleIcons
-        )
+    case 'ADD_MULTIPLE_ICONS': {
+      if ('selection' in action) {
+        return {
+          ...state,
+          multipleIcons: eosIconsHelper.setMultipleIcons(
+            action.selection,
+            state.multipleIcons
+          )
+        }
       }
-    case 'TOGGLE_ICON_TAGS':
-      return {
-        ...state,
-        iconsCategory: eosIconsHelper.selectAllTagsIcons(
-          action.selection,
-          state.iconsCategory
-        )
-      }
+      return { ...state }
+    }
+
+    case 'TOGGLE_ICON_TAGS': {
+      if ('selection' in action)
+        return {
+          ...state,
+          iconsCategory: eosIconsHelper.selectAllTagsIcons(
+            action.selection,
+            state.iconsCategory
+          )
+        }
+      return { ...state }
+    }
+
     case 'TOGGLE_CUSTOMIZE':
       return {
         ...state,
@@ -199,61 +204,95 @@ export const iconsReducer = (
           state.multipleIcons
         )
       }
+
     case 'RESET_CUSTOMIZE':
       return {
         ...state,
         customize: false
       }
-    case 'ADD_ALL_ICONS':
-      return {
-        ...state,
-        multipleIcons: eosIconsHelper.selectAllIcons(
-          action.search,
-          state.icons,
-          state.multipleIcons
-        )
+
+    case 'ADD_ALL_ICONS': {
+      if ('search' in action) {
+        return {
+          ...state,
+          multipleIcons: eosIconsHelper.selectAllIcons(
+            action.search,
+            state.icons,
+            state.multipleIcons
+          )
+        }
       }
+      return { ...state }
+    }
+
     case 'REMOVE_ALL_ICONS':
       return {
         ...state,
         multipleIcons: eosIconsHelper.deselectAllIcons(state.multipleIcons)
       }
-    case 'TOGGLE_SEARCH_REGULAR_ICONS':
-      return {
-        ...state,
-        iconsCategory: eosIconsHelper.setSearchRegularList(action.search)
+
+    case 'TOGGLE_SEARCH_REGULAR_ICONS': {
+      if ('search' in action) {
+        return {
+          ...state,
+          iconsCategory: eosIconsHelper.setSearchRegularList(action.search)
+        }
       }
-    case 'TOGGLE_SEARCH_ANIMATED_ICONS':
-      return {
-        ...state,
-        animatedIcons: eosIconsHelper.setSearchAnimatedList(
-          action.search,
-          state.animatedIcons
-        )
+      return { ...state }
+    }
+
+    case 'TOGGLE_SEARCH_ANIMATED_ICONS': {
+      if ('search' in action) {
+        return {
+          ...state,
+          animatedIcons: eosIconsHelper.setSearchAnimatedList(
+            action.search,
+            state.animatedIcons
+          )
+        }
       }
-    case 'UPLOAD_PREVIOUS_SELECTION':
-      return {
-        ...state,
-        multipleIcons: eosIconsHelper.uploadPreviousSelection(
-          action.data,
-          state.multipleIcons
-        )
+      return { ...state }
+    }
+
+    case 'UPLOAD_PREVIOUS_SELECTION': {
+      if ('data' in action) {
+        return {
+          ...state,
+          multipleIcons: eosIconsHelper.uploadPreviousSelection(
+            action.data,
+            state.multipleIcons
+          )
+        }
       }
+      return { ...state }
+    }
+
     case 'TOGGLE_CUSTOMIZE_COOKIES':
       return {
         ...state,
         cookiesToggle: eosIconsHelper.toggleCookies(state.cookiesToggle)
       }
-    case 'SET_CATEGORY_SELECTOR':
-      return {
-        ...state,
-        iconsCategory: eosIconsHelper.setCategoryFilter(action.category)
+
+    case 'SET_CATEGORY_SELECTOR': {
+      if ('category' in action) {
+        return {
+          ...state,
+          iconsCategory: eosIconsHelper.setCategoryFilter(action.category)
+        }
       }
-    case 'SET_ICONS_THEME':
-      return {
-        ...state,
-        iconsTheme: (eosIconsState.iconsTheme = action.action)
+      return { ...state }
+    }
+
+    case 'SET_ICONS_THEME': {
+      if ('action' in action) {
+        return {
+          ...state,
+          iconsTheme: (eosIconsState.iconsTheme = action.action)
+        }
       }
+      return { ...state }
+    }
+
     default:
       return { ...state }
   }

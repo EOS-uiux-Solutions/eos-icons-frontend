@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
+import { useRouter } from 'next/router'
 import { AppContext } from '../utils/AppContext'
 import { IconSetContext } from '../utils/IconSetContext'
 import Button from './Button'
@@ -17,6 +18,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
   const ref = useRef<HTMLDivElement>(null)
   const [iconEditor, setIconEditor] = useState(false)
   const [iconType, setIconType] = useState('static')
+  const router = useRouter()
 
   const iconEditorToggle = (type: 'animated' | 'static') => {
     setIconType(type)
@@ -44,13 +46,9 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
   }
 
   useOnClickOrEsc(ref, () => close())
-  let queryString
-  if (typeof window !== 'undefined') {
-    queryString = window.location.search
-  }
-  const urlParams: URLSearchParams = new URLSearchParams(queryString)
-  const urlIconName: string | null = urlParams.get('iconName')
-  const urlTagName: string | null = urlParams.get('tagName')
+
+  const urlTagName = router.query.tagName as string
+  const urlIconName = router.query.iconName as string
 
   let setSearchWithUrlParam: string | null =
     urlIconName && !iconName ? urlIconName : ''
@@ -59,7 +57,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
     setSearchWithUrlParam = urlTagName
   }
 
-  const selectTag = (urlTagName: string, callback: void) => {
+  const selectTag = (urlTagName: string) => {
     if (typeof window !== 'undefined') {
       window.history.replaceState(
         '',
@@ -67,7 +65,6 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
         `${window.location.pathname}?tagName=${urlTagName}`
       )
     }
-    return callback
   }
   const setTagInSearch = () => {
     return dispatch({
@@ -168,13 +165,11 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
                   className='badge'
                   onClick={() => {
                     iconDispatch({ type: 'SET_SEARCH_VALUE', payload: tag })
-                    selectTag(
-                      tag,
-                      dispatch({
-                        type: 'TOGGLE_ICON_TAGS',
-                        selection: tag
-                      })
-                    )
+                    selectTag(tag)
+                    dispatch({
+                      type: 'TOGGLE_ICON_TAGS',
+                      selection: tag
+                    })
                   }}
                   style={{ cursor: 'pointer' }}
                 >
@@ -187,7 +182,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
         {iconEditor ? (
           <IconEditor
             isActive={iconEditor}
-            show={iconEditorToggle as () => void}
+            show={iconEditorToggle}
             iconNames={[iconName]}
             iconType={iconType}
             theme={state.iconsTheme}

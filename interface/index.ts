@@ -11,7 +11,7 @@ export interface AboutBlockProps {
 
 export interface ButtonProps {
   children: React.ReactNode
-  onClick: () => void
+  onClick: ((e: React.MouseEvent) => void) | (() => void)
   primary?: boolean
   type?: 'button' | 'submit' | 'reset'
   customClass?: string
@@ -62,7 +62,10 @@ export interface IconProps {
 
 export interface IconEditorProps {
   isActive: boolean
-  show: () => void
+  show:
+    | ((type: 'animated' | 'static') => void)
+    | ((e: React.MouseEvent) => void)
+    | (() => void)
   iconNames: string[]
   iconType?: string
   theme?: string
@@ -96,15 +99,6 @@ export interface eosIconsStateType {
   customize: boolean
   iconsTheme: string
   cookiesToggle: boolean
-}
-
-export interface eosIconsActionType {
-  type: string
-  selection: string
-  search: string
-  data: string[]
-  category: string
-  action: string
 }
 
 export interface ModalProps {

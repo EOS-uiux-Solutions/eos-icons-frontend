@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+  MouseEventHandler
+} from 'react'
 import { SketchPicker } from 'react-color'
 import Button from './Button'
 import axios, { AxiosResponse } from 'axios'
@@ -63,12 +69,12 @@ const IconEditor: React.FC<IconEditorProps> = ({
         .value
     )
   }
-  const flipIconHorizontal = (e: MouseEvent) => {
+  const flipIconHorizontal = (e: React.MouseEvent) => {
     e.preventDefault()
     setHorizontalFlip(!horizontalFlip)
   }
 
-  const flipIconVertical = (e: MouseEvent) => {
+  const flipIconVertical = (e: React.MouseEvent) => {
     e.preventDefault()
     setVerticalFlip(!verticalFlip)
   }
@@ -160,7 +166,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
     }
     return window.open(downloadEndPoints, '_blank')
   }
-  const generateCustomizedIcon = (e: MouseEvent) => {
+  const generateCustomizedIcon = (e: React.MouseEvent) => {
     if (!generating) {
       e.preventDefault()
       setGenerate(true)
@@ -191,7 +197,10 @@ const IconEditor: React.FC<IconEditorProps> = ({
         className='icon-editor-card'
         ref={iconEditorRef as React.RefObject<HTMLDivElement>}
       >
-        <div className='close' onClick={show as () => void} />
+        <div
+          className='close'
+          onClick={show as MouseEventHandler<HTMLDivElement>}
+        />
         <h2>Customize Icon</h2>
         <div className='flex flex-row icon-editor-content'>
           <div>
@@ -292,10 +301,10 @@ const IconEditor: React.FC<IconEditorProps> = ({
               <div>
                 <p>Flip</p>
                 <div>
-                  <button onClick={flipIconHorizontal as () => void}>
+                  <button onClick={flipIconHorizontal}>
                     <i className='eos-icons'>flip</i>
                   </button>
-                  <button onClick={flipIconVertical as () => void}>
+                  <button onClick={flipIconVertical}>
                     <i className='eos-icons rotate-flip-icon'>flip</i>
                   </button>
                 </div>
@@ -341,10 +350,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
               ''
             )}
             <div className='export-btn'>
-              <Button
-                type='button'
-                onClick={generateCustomizedIcon as () => void}
-              >
+              <Button type='button' onClick={generateCustomizedIcon}>
                 {!generating ? (
                   <span>Export as {exportAs.toUpperCase()}</span>
                 ) : (

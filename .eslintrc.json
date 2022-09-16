@@ -17,6 +17,6 @@
     "react/prop-types": "off"
   },
   "globals": {
-    "JSX": "true"
+    "JSX": true
   }
 }
