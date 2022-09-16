@@ -1,4 +1,5 @@
 import type { Router } from 'next/router'
+import React from 'react'
 export interface AboutBlockProps {
   title: string
   description: string

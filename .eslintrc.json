@@ -16,12 +16,7 @@
   "rules": {
     "react/prop-types": "off"
   },
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "no-undef": "off"
-      }
-    }
-  ]
+  "globals": {
+    "JSX": "true"
+  }
 }
