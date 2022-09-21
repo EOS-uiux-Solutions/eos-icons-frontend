@@ -5,6 +5,7 @@ import { contributors, leads, creators } from '../utils/Contributors.store'
 import Button from '../components/Button'
 import { Helmet } from 'react-helmet'
 import scrollToTop from '../utils/scrollToTop'
+import { v4 as uuid } from 'uuid'
 
 export const TeamPage = () => {
   useEffect(() => {
@@ -43,7 +44,7 @@ export const TeamPage = () => {
             </p>
           </div>
           {leads.map((ele, i) => (
-            <TeamBlock {...ele} key={i} />
+            <TeamBlock {...ele} key={uuid()} />
           ))}
         </div>
 
@@ -51,7 +52,7 @@ export const TeamPage = () => {
           <h2>The creators and maintainers of the eos-icons npm package.</h2>
           <div className='team-page-contributors-list'>
             {creators.map((ele, i) => (
-              <ContributorsBlock {...ele} key={i} />
+              <ContributorsBlock {...ele} key={uuid()} />
             ))}
           </div>
         </div>
@@ -63,7 +64,7 @@ export const TeamPage = () => {
 
           <div className='team-page-contributors-list'>
             {contributors.map((ele, i) => (
-              <ContributorsBlock {...ele} key={i} />
+              <ContributorsBlock {...ele} key={uuid()} />
             ))}
           </div>
         </div>

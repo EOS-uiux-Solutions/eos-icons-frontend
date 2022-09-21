@@ -4,10 +4,11 @@ import GeneratingFont from './GeneratingFont'
 import Modal from './Modal'
 import ThankYou from './ThankYou'
 import IconEditor from './IconEditor'
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import { AppContext } from '../utils/AppContext'
 import ICON_PICKER_API_URL from '../config.json'
 import { CustomizeIconsPanelProps } from '../interface'
+import { eosIconsActionType } from '../types'
 
 const sendData = async (params: { url: string; payload: string[] }) => {
   const { url, payload } = params
@@ -19,7 +20,7 @@ const sendData = async (params: { url: string; payload: string[] }) => {
   return response.data
 }
 
-const downloadFont = (props: { timestamp: AxiosResponse | undefined }) => {
+const downloadFont = (props: { timestamp?: string }) => {
   const { timestamp } = props
   const downloadEndPoints = `${ICON_PICKER_API_URL}/download?ts=${timestamp}`
   return window.open(downloadEndPoints, '_blank')
@@ -38,7 +39,7 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
   const { selectAll, deselectAll } = props
 
   const [modal, setModal] = useState(false)
-  const [serverResponse, setServerResponse] = useState()
+  const [serverResponse, setServerResponse] = useState<string>()
 
   const modalToggle = () => {
     setModal(!modal)
@@ -125,11 +126,11 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
   )
 }
 
-const search = (file: File, dispatch: React.Dispatch<any>) => {
+const search = (file: File, dispatch: React.Dispatch<eosIconsActionType>) => {
   const fileReader = new window.FileReader()
 
   fileReader.onload = function (fileData) {
-    const iconsArray = JSON.parse(fileData.target!.result as string)
+    const iconsArray = JSON.parse(fileData.target?.result as string)
     let data = []
     try {
       // works for both versions for now

@@ -34,9 +34,7 @@ const Modal: React.FC<ModalProps> = ({
         )}
       </div>
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }
 
 export default Modal

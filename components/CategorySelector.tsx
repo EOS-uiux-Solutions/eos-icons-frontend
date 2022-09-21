@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../utils/AppContext'
 import { CategorySelectorProps } from '../interface'
+import { v4 as uuid } from 'uuid'
 
 export const CategorySelector: React.FC<CategorySelectorProps> = ({
   disabled
@@ -25,7 +26,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
         {state.iconsCategoryList.map((ele: string | true, i: number) => {
           return (
             <option
-              key={i}
+              key={uuid()}
               value={ele as string | number | readonly string[] | undefined}
             >
               {ele}

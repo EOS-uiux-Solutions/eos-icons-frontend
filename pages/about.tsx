@@ -5,6 +5,7 @@ import { UsedBy } from '../components/UsedBy'
 import DownloadEOSicons from '../components/DownloadEOSicons'
 import { Helmet } from 'react-helmet'
 import scrollToTop from '../utils/scrollToTop'
+import { v4 as uuid } from 'uuid'
 
 export const AboutPage = () => {
   useEffect(() => {
@@ -35,7 +36,7 @@ export const AboutPage = () => {
       </PageHeader>
       <div className='container'>
         {data.map((ele, i) => {
-          return <AboutBlock {...ele} key={i} />
+          return <AboutBlock {...ele} key={uuid()} />
         })}
 
         <UsedBy />

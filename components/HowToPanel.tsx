@@ -6,6 +6,9 @@ import Button from './Button'
 import IconEditor from './IconEditor'
 import toast, { Toaster } from 'react-hot-toast'
 import { HowToPanelProps } from '../interface'
+import copyContent from '../utils/copyContent'
+import { v4 as uuid } from 'uuid'
+type IconType = 'static' | 'animated'
 
 const HowToPanel: React.FC<HowToPanelProps> = ({
   show,
@@ -17,10 +20,10 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
   const { iconDispatch } = useContext(IconSetContext)
   const ref = useRef<HTMLDivElement>(null)
   const [iconEditor, setIconEditor] = useState(false)
-  const [iconType, setIconType] = useState('static')
+  const [iconType, setIconType] = useState<IconType>('static')
   const router = useRouter()
 
-  const iconEditorToggle = (type: 'animated' | 'static') => {
+  const iconEditorToggle = (type: IconType) => {
     setIconType(type)
     setIconEditor(!iconEditor)
   }
@@ -95,16 +98,13 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
                 <input
                   id='copy-code'
                   className='input-group-element'
-                  readOnly={true}
+                  readOnly
                   value={`<Image src='${iconName}.svg'/>`}
                 />
                 <Button
                   type='button'
                   onClick={() => {
-                    const element = document.getElementById(
-                      'copy-code'
-                    ) as HTMLInputElement
-                    element.select()
+                    copyContent('copy-code')
                     document.execCommand('copy')
                   }}
                 >
@@ -127,7 +127,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
                 <input
                   id='copy-code'
                   className='input-group-element'
-                  readOnly={true}
+                  readOnly
                   value={
                     state.iconsTheme === 'filled'
                       ? `<i class='eos-icons'>${iconName}</i>`
@@ -137,10 +137,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
                 <Button
                   type='button'
                   onClick={() => {
-                    const element = document.getElementById(
-                      'copy-code'
-                    ) as HTMLInputElement
-                    element.select()
+                    copyContent('copy-code')
                     document.execCommand('copy')
                     toast('HTML Tag Copied')
                   }}
@@ -161,7 +158,7 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
               <strong>Tags:</strong>
               {iconTags?.map((tag, key) => (
                 <span
-                  key={key}
+                  key={uuid()}
                   className='badge'
                   onClick={() => {
                     iconDispatch({ type: 'SET_SEARCH_VALUE', payload: tag })
@@ -187,14 +184,10 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
             iconType={iconType}
             theme={state.iconsTheme}
           />
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }
 
 export default HowToPanel

@@ -65,7 +65,7 @@ const eosIconsHelper = {
     return iconsCategory.map((ele) => {
       return {
         category: ele.category,
-        icons: ele.icons.filter((ele) => ele!.tags.includes(tagName))
+        icons: ele.icons.filter((ele) => (ele?.tags || '').includes(tagName))
       }
     })
   },
@@ -137,8 +137,8 @@ const eosIconsHelper = {
         category: ele.category,
         icons: ele.icons.filter(
           (ele) =>
-            searchMutliple([ele!.name], searchArray) ||
-            searchMutliple(ele!.tags, searchArray)
+            searchMutliple([ele?.name || ''], searchArray) ||
+            searchMutliple(ele?.tags || [], searchArray)
         )
       }
     })

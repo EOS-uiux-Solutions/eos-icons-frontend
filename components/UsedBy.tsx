@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { v4 as uuid } from 'uuid'
 
 export const UsedBy = () => {
   return (
@@ -8,7 +9,7 @@ export const UsedBy = () => {
       <ul>
         {data.map((ele, i) => {
           return (
-            <li key={i}>
+            <li key={uuid()}>
               <a
                 href={ele.url}
                 className='used-by-image'

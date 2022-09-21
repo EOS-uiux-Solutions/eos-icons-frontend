@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { TeamBlockProps, ContributorsBlockProps } from '../interface'
+import { v4 as uuid } from 'uuid'
 interface socialMediaImgMap {
   [name: string]: string
 }
@@ -39,7 +40,7 @@ export const TeamBlock: React.FC<TeamBlockProps> = ({
                   i: number
                 ) => {
                   return (
-                    <li key={i}>
+                    <li key={uuid()}>
                       <a
                         href={ele.link}
                         target='_blank'
@@ -79,7 +80,7 @@ export const ContributorsBlock: React.FC<ContributorsBlockProps> = ({
         <ul>
           {social?.map((ele, i) => {
             return (
-              <li key={i}>
+              <li key={uuid()}>
                 <a
                   href={ele.link}
                   target='_blank'

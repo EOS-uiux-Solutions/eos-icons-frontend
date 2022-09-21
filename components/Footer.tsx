@@ -3,6 +3,7 @@ import links from '../utils/Links.store'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FooterBlockProps } from '../interface'
+import { v4 as uuid } from 'uuid'
 
 const Footer: React.FC = () => {
   return (
@@ -11,14 +12,14 @@ const Footer: React.FC = () => {
         <div className='container flex flex-wrap'>
           <div className='container flex flex-wrap'>
             {links.map((ele, i) => {
-              return <FooterBlock {...ele} key={i} />
+              return <FooterBlock {...ele} key={uuid()} />
             })}
           </div>
-          <Link href={links[0].vercel!.href}>
-            <a className='banner' target={links[0].vercel!.target}>
+          <Link href={links[0].vercel?.href || ''}>
+            <a className='banner' target={links[0].vercel?.target || ''}>
               <Image
                 className=''
-                src={links[0].vercel!.img}
+                src={links[0].vercel?.img || ''}
                 alt='vercel-banner'
               />{' '}
             </a>
@@ -36,7 +37,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ img, title, links }) => {
       <div className='footer-block-list'>
         {links?.map((ele, index) => (
           <a
-            key={index}
+            key={uuid()}
             href={ele.href}
             data-types-category={ele.category}
             data-types-label={ele.label}

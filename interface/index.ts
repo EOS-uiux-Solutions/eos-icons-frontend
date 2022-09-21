@@ -152,7 +152,7 @@ export interface ShowHowToUseProps {
 
 export interface iconSetActionType {
   type: string
-  event: KeyboardEvent
+  event: React.KeyboardEvent
   router: Router
   dispatch: React.Dispatch<any>
   icon: IconType
@@ -200,4 +200,15 @@ export interface ToggleProps {
   id: string
   checkedStatus: boolean
   disabledStatus: boolean
+}
+
+export interface APIPostPayload {
+  icons: string[]
+  exportAs: string
+  exportSize: string
+  customizationConfig: {
+    colorCode: string
+    rotateAngle: number
+    flip: { horizontal: boolean; vertical: boolean }
+  }
 }

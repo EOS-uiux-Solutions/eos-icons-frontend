@@ -10,11 +10,13 @@ import Button from './Button'
 import axios, { AxiosResponse } from 'axios'
 import loading from '../public/assets/images/loading-white.svg'
 import { AppContext } from '../utils/AppContext'
+import { v4 as uuid } from 'uuid'
 /* https://www.npmjs.com/package/react-svg the package to work with SVG's */
 import { ReactSVG } from 'react-svg'
 import ICON_PICKER_API_URL from '../config.json'
 import Image from 'next/image'
-import { IconEditorProps } from '../interface'
+import { IconEditorProps, APIPostPayload } from '../interface'
+import copyContent from '../utils/copyContent'
 
 const IconEditor: React.FC<IconEditorProps> = ({
   isActive,
@@ -149,7 +151,10 @@ const IconEditor: React.FC<IconEditorProps> = ({
     verticalFlip
   ])
 
-  const postDataToApi = async (params: { url: string; payload: {} }) => {
+  const postDataToApi = async (params: {
+    url: string
+    payload: APIPostPayload
+  }) => {
     const { url, payload } = params
 
     const response = await axios.post(url, payload)
@@ -220,7 +225,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
                     <input
                       id='copy-svg'
                       className='input-group-element'
-                      readOnly={true}
+                      readOnly
                       value={`${svgCode[currentPosition]}`}
                       disabled={!svgCode.length}
                     />
@@ -228,12 +233,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
                       type='button'
                       disabled={!svgCode.length}
                       onClick={() => {
-                        ;(
-                          document.getElementById(
-                            'copy-svg'
-                          ) as HTMLInputElement
-                        ).select()
-                        document.execCommand('copy')
+                        copyContent('copy-svg')
                       }}
                     >
                       <i className='eos-icons eos-18'>content_copy</i>
@@ -312,7 +312,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
             </div>
             <div className='type-selector'>
               {exportTypes.map((type, key) => (
-                <div key={key} className='type-selector-option'>
+                <div key={uuid()} className='type-selector-option'>
                   <input
                     type='radio'
                     name={type}
@@ -338,7 +338,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
                     onChange={changeExportSize}
                   >
                     {exportSizes.map((size, key) => (
-                      <option key={key} value={`${size}`}>
+                      <option key={uuid()} value={`${size}`}>
                         {`${size}`} x {`${size}`} px
                       </option>
                     ))}
@@ -369,9 +369,7 @@ const IconEditor: React.FC<IconEditorProps> = ({
         </div>
       </div>
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }
 
 export default IconEditor

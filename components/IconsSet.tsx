@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { AppContext } from '../utils/AppContext'
 import { IconSetContext } from '../utils/IconSetContext'
 import { iconSetHelper } from '../utils/IconSet.store'
+import { v4 as uuid } from 'uuid'
 
 /* Components */
 import Icon from './IconDisplay'
@@ -209,19 +210,19 @@ const IconsSet: React.FC = () => {
             {state.iconsCategory.map(
               (categoryObject: Category, index: number) => {
                 return categoryObject.icons.length > 0 ? (
-                  <div key={index}>
+                  <div key={uuid()}>
                     <h4 className='category'>{categoryObject.category}</h4>
                     <div className='icons-list'>
                       {categoryObject.icons.map((icon, i) => (
                         <Icon
                           size={36}
                           active={iconSetHelper.isActive(
-                            icon!.name,
+                            icon?.name || '',
                             state,
                             iconState.iconSelected
                           )}
-                          key={icon!.name}
-                          name={icon!.name}
+                          key={uuid()}
+                          name={icon?.name || ''}
                           iconsTheme={state.iconsTheme}
                           type={'static'}
                           onClickAction={() => {
@@ -232,7 +233,7 @@ const IconsSet: React.FC = () => {
                             })
                             return dispatch({
                               type: state.customize ? 'ADD_MULTIPLE_ICONS' : '',
-                              selection: icon!.name
+                              selection: icon?.name || ''
                             })
                           }}
                           onDoubleClickAction={() => {
@@ -278,7 +279,7 @@ const IconsSet: React.FC = () => {
             <div className='icons-list'>
               {state.animatedIcons.map((icon: string, index: number) => (
                 <Icon
-                  key={index}
+                  key={uuid()}
                   name={icon}
                   size={36}
                   type={'animated'}

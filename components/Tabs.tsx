@@ -5,6 +5,7 @@ import { AppContext } from '../utils/AppContext'
 import IconVersionToggle from './IconVersionToggle'
 import SHOW_THEME_SWITCH from '../config.json'
 import { TabsProps } from '../interface'
+import { v4 as uuid } from 'uuid'
 
 const Tabs: React.FC<TabsProps> = ({
   children,
@@ -28,7 +29,9 @@ const Tabs: React.FC<TabsProps> = ({
   }, [currentTab])
 
   useEffect(() => {
-    setPosition(document.querySelector('.page-header')!.clientHeight + 54)
+    setPosition(
+      (document.querySelector('.page-header')?.clientHeight || 0) + 54
+    )
   }, [customize, showPanel, windowsSize])
 
   useEffect(() => {
@@ -50,7 +53,7 @@ const Tabs: React.FC<TabsProps> = ({
   return (
     <div className='tabs'>
       <ul className='tab-list' style={{ top: position }}>
-        {children!.map((child) => {
+        {children.map((child) => {
           const { htmlFor } = child.props
           return (
             <li
@@ -59,7 +62,7 @@ const Tabs: React.FC<TabsProps> = ({
                   ? 'tab-list-item tab-list-active'
                   : 'tab-list-item'
               }
-              key={htmlFor}
+              key={uuid()}
               onClick={() => {
                 setActiveTab(htmlFor)
                 setTab && setTab(htmlFor)
@@ -94,13 +97,13 @@ const Tabs: React.FC<TabsProps> = ({
             />
           </div>
         ) : (
-          ' '
+          ''
         )}
       </ul>
 
       <div className='tab-content'>
-        {children!.map((child) => {
-          if (child.props.htmlFor !== activeTab) return undefined
+        {children.map((child) => {
+          if (child.props.htmlFor !== activeTab) return null
           return child.props.children
         })}
       </div>

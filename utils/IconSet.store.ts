@@ -29,7 +29,7 @@ export const iconSetHelper = {
     return !iconEditor
   },
 
-  handleKeyPress: (event: KeyboardEvent) => {
+  handleKeyPress: (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       return true
     }
@@ -69,11 +69,12 @@ export const iconSetHelper = {
           ) {
             const currentDistance = iconSetHelper.editDistance(
               searchValue,
-              eosIconsState.iconsCategory[i].icons[j]!.name
+              eosIconsState.iconsCategory[i].icons[j]?.name || ''
             )
             if (currentDistance < minimum) {
               minimum = currentDistance
-              suggestedString = eosIconsState.iconsCategory[i].icons[j]!.name
+              suggestedString =
+                eosIconsState.iconsCategory[i].icons[j]?.name || ''
             }
           }
         }
@@ -358,7 +359,7 @@ export const iconSetHelper = {
     const words = iconSetHelper.getWords(value)
     if (tab === 'Static Icons') {
       let count = 0
-      for (let k = 0; k < words!.length; k++) {
+      for (let k = 0; k < (words?.length || 0); k++) {
         if (words![k].length === 0) {
           continue
         }
@@ -370,8 +371,8 @@ export const iconSetHelper = {
           ) {
             const icon = eosIconsState.iconsCategory[i].icons[j]
             if (
-              icon!.name.includes(words![k].toLowerCase()) ||
-              icon!.tags.includes(words![k].toLowerCase())
+              icon?.name.includes(words![k].toLowerCase()) ||
+              icon?.tags.includes(words![k].toLowerCase())
             ) {
               count += 1
             }
