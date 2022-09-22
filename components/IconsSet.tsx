@@ -56,8 +56,8 @@ const IconsSet: React.FC = () => {
                 iconState.searchValue.length ? 'cursor-pointer' : ''
               }`}
               onClick={() => {
-                if (iconState.searchValue.length > 0) {
-                  searchRef.current!.value = ''
+                if (iconState.searchValue.length > 0 && searchRef.current) {
+                  searchRef.current.value = ''
                   iconDispatch({ type: 'SET_TAG_SELECTED', payload: '' })
                   iconDispatch({ type: 'CLOSE_HOWTO', router })
                 }

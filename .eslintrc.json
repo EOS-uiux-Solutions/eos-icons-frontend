@@ -15,8 +15,5 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/prop-types": "off"
-  },
-  "globals": {
-    "JSX": true
   }
 }

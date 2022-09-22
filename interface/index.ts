@@ -162,7 +162,7 @@ export interface iconSetActionType {
 }
 
 export interface TabsProps {
-  children: JSX.Element[]
+  children: React.ReactElement[]
   setTab?: (tab: string) => void
   customize?: boolean
   showPanel?: boolean
