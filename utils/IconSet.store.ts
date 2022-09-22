@@ -371,8 +371,8 @@ export const iconSetHelper = {
           ) {
             const icon = eosIconsState.iconsCategory[i].icons[j]
             if (
-              icon?.name.includes(words![k].toLowerCase()) ||
-              icon?.tags.includes(words![k].toLowerCase())
+              icon?.name.includes((words?.[k] || '').toLowerCase()) ||
+              icon?.tags.includes((words?.[k] || '').toLowerCase())
             ) {
               count += 1
             }
