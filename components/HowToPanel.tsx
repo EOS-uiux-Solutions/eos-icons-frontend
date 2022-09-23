@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { HowToPanelProps } from '../interface'
 import copyContent from '../utils/copyContent'
 import { v4 as uuid } from 'uuid'
-type IconType = 'static' | 'animated'
+import { IconCategory } from '../types'
 
 const HowToPanel: React.FC<HowToPanelProps> = ({
   show,
@@ -20,10 +20,10 @@ const HowToPanel: React.FC<HowToPanelProps> = ({
   const { iconDispatch } = useContext(IconSetContext)
   const ref = useRef<HTMLDivElement>(null)
   const [iconEditor, setIconEditor] = useState(false)
-  const [iconType, setIconType] = useState<IconType>('static')
+  const [iconType, setIconType] = useState<IconCategory>('static')
   const router = useRouter()
 
-  const iconEditorToggle = (type: IconType) => {
+  const iconEditorToggle = (type: IconCategory) => {
     setIconType(type)
     setIconEditor(!iconEditor)
   }

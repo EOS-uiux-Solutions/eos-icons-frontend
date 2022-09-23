@@ -94,7 +94,9 @@ const CustomizeIconsPanel: React.FC<CustomizeIconsPanelProps> = (props) => {
               accept='application/JSON'
               hidden
               name='file'
-              onChange={(event) => search(event.target.files![0], dispatch)}
+              onChange={(event) =>
+                search((event.target.files || [])[0], dispatch)
+              }
             />
           </div>
         </div>

@@ -1,5 +1,6 @@
 import type { Router } from 'next/router'
 import React from 'react'
+import { IconCategory } from '../types'
 export interface AboutBlockProps {
   title: string
   description: string
@@ -46,7 +47,7 @@ export interface HowToPanelProps {
   show: boolean
   close: () => void
   iconName: string
-  type: 'static' | 'animated'
+  type: IconCategory
   iconTags: string[]
 }
 
@@ -55,7 +56,7 @@ export interface IconProps {
   size: number
   onClickAction: () => void
   onDoubleClickAction: () => void
-  type: 'static' | 'animated'
+  type: IconCategory
   active: boolean
   iconsTheme?: string
 }

@@ -6,3 +6,5 @@ export type eosIconsActionType =
   | { type: string; data: string[] }
   | { type: string; action: string }
   | { type: string; category: string }
+
+export type IconCategory = 'static' | 'animated'
