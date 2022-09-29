@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { IconProps } from '../interface'
 
 const Icon: React.FC<IconProps> = ({
@@ -53,7 +54,7 @@ const Icon: React.FC<IconProps> = ({
         if (event.detail === 2) onDoubleClickAction()
       }}
     >
-      <img src={require(`eos-icons/animated-svg/${name}.svg`)} alt={name} />
+      <Image src={require(`eos-icons/animated-svg/${name}.svg`)} alt={name} />
       {name}
     </div>
   )
