@@ -28,12 +28,18 @@ const iconsCategory: Category[] = categories.map((category) => {
   }
 })
 
-function searchMutliple(element: string[], searchArray: string[]) {
+const searchMutliple = (element: string[], searchArray: string[]) => {
   for (let i = 0; i < searchArray.length; i++) {
     if (element.includes(searchArray[i])) return true
   }
   return false
 }
+
+export const noOutLined = eosIcons
+  .filter((ele) => !Object.prototype.hasOwnProperty.call(ele, 'hasOutlined'))
+  .map((ele) => {
+    return ele.name
+  })
 
 /* EOS Icons state */
 export const eosIconsState: eosIconsStateType = {
