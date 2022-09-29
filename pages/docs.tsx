@@ -137,7 +137,7 @@ const Docs = () => {
                   rel='noopener noreferrer'
                 >
                   {' '}
-                  https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css
+                  https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css
                 </a>
               </div>
               <p>
@@ -157,7 +157,7 @@ const Docs = () => {
               <pre className='code language-html'>
                 <code>
                   {
-                    "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css' />"
+                    "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css' />"
                   }
                 </code>
               </pre>
