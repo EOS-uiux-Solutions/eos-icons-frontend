@@ -129,7 +129,7 @@ const Docs = () => {
               <p>Outline theme:</p>
               <div className='resp-link-edit'>
                 <a
-                  href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css'
+                  href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css'
                   data-event-category='External link'
                   data-event-action='Link to EOS Icons CDN'
                   data-event-label='Docs page'
