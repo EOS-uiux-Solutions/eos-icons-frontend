@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { IconProps } from '../interface'
+import { noOutLined } from '../utils/EosIcons.store'
 
 const Icon: React.FC<IconProps> = ({
   name,
@@ -37,13 +38,17 @@ const Icon: React.FC<IconProps> = ({
         if (event.detail === 2) onDoubleClickAction()
       }}
     >
-      <i
-        className={`eos-icons${iconsTheme === 'outlined' ? '-outlined' : ' '} ${
-          sizes[size]
-        }`}
-      >
-        {name}
-      </i>
+      {noOutLined.includes(name) ? (
+        <i className={`eos-icons ${sizes[size]}`}>{name}</i>
+      ) : (
+        <i
+          className={`eos-icons${
+            iconsTheme === 'outlined' ? '-outlined' : ' '
+          } ${sizes[size]}`}
+        >
+          {name}
+        </i>
+      )}
       {name}
     </div>
   ) : (
