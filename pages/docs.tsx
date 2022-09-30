@@ -129,7 +129,7 @@ const Docs = () => {
               <p>Outline theme:</p>
               <div className='resp-link-edit'>
                 <a
-                  href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css'
+                  href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css'
                   data-event-category='External link'
                   data-event-action='Link to EOS Icons CDN'
                   data-event-label='Docs page'
@@ -137,7 +137,7 @@ const Docs = () => {
                   rel='noopener noreferrer'
                 >
                   {' '}
-                  https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css
+                  https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css
                 </a>
               </div>
               <p>
@@ -157,7 +157,7 @@ const Docs = () => {
               <pre className='code language-html'>
                 <code>
                   {
-                    "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css' />"
+                    "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css' />"
                   }
                 </code>
               </pre>

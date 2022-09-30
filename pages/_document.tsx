@@ -23,7 +23,7 @@ class MyDocument extends Document {
           />
           <link
             rel='stylesheet'
-            href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/outlined/eos-icons-outlined.css'
+            href='https://cdn.jsdelivr.net/npm/eos-icons@latest/dist/css/eos-icons-outlined.css'
           />
         </Head>
         <body>
