@@ -134,8 +134,8 @@ export interface iconSetStateType {
   showPanel: boolean
   searchValue: string
   tab: string
-  staticHistory: string
-  animatedHistory: string
+  staticHistory: SelectedIconType
+  animatedHistory: SelectedIconType
   selectMultiple: boolean
   emptySearchResult: boolean
   suggestedString: string
