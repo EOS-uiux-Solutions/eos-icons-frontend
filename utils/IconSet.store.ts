@@ -14,8 +14,8 @@ export const iconSetState: iconSetStateType = {
   showPanel: false,
   searchValue: '',
   tab: 'Static Icons',
-  staticHistory: '',
-  animatedHistory: '',
+  staticHistory: { name: '', tags: [] },
+  animatedHistory: { name: '', tags: [] },
   selectMultiple: true,
   emptySearchResult: false,
   suggestedString: '',
@@ -41,8 +41,8 @@ export const iconSetHelper = {
       showPanel: false,
       searchValue: '',
       tab: 'Static Icons',
-      staticHistory: '',
-      animatedHistory: '',
+      staticHistory: { name: '', tags: [] },
+      animatedHistory: { name: '', tags: [] },
       selectMultiple: true,
       emptySearchResult: false,
       suggestedString: '',
@@ -173,7 +173,7 @@ export const iconSetHelper = {
     return {
       emptySearchResult: false,
       ...iconSetHelper.closeHowTo(router),
-      searchValue: suggestedString
+      searchValue: suggestedString || ''
     }
   },
 
@@ -217,7 +217,7 @@ export const iconSetHelper = {
         return {
           showPanel: true,
           iconSelected: iconObj,
-          searchValue: iconObj.name,
+          searchValue: iconObj.name || '',
           tab: tabType === 'static' ? 'Static Icons' : 'Animated Icons'
         }
       }
@@ -247,6 +247,7 @@ export const iconSetHelper = {
       return {
         showPanel: !setIconSelected,
         iconSelected: setIconSelected ? '' : iconObj,
+        staticHistory: setIconSelected ? { name: '', tags: [] } : iconObj,
         searchValue: setIconSelected ? '' : iconObj.name
       }
     }
@@ -266,6 +267,11 @@ export const iconSetHelper = {
     }
     return {
       iconSelected:
+        JSON.stringify({ name: icon, tags: [] }) ===
+        JSON.stringify(iconSelected)
+          ? { name: '', tags: [] }
+          : { name: icon, tags: [] },
+      animatedHistory:
         JSON.stringify({ name: icon, tags: [] }) ===
         JSON.stringify(iconSelected)
           ? { name: '', tags: [] }
@@ -291,49 +297,64 @@ export const iconSetHelper = {
     e: string,
     tab: string,
     iconSelected: SelectedIconType,
-    staticHistory: string,
-    animatedHistory: string,
+    staticHistory: SelectedIconType,
+    animatedHistory: SelectedIconType,
     searchValue: string,
     router: Router
   ) => {
     if (e !== tab) {
       if (e === 'Static Icons') {
-        if (staticHistory === '') {
-          const storeSearchValue = searchValue
+        if (
+          JSON.stringify(staticHistory) !==
+          JSON.stringify({ name: '', tags: [] })
+        ) {
+          router.push(
+            {
+              query: { iconName: staticHistory.name, type: 'static' }
+            },
+            undefined,
+            { scroll: false }
+          )
           return {
             tab: e,
-            animatedHistory: iconSelected,
-            ...iconSetHelper.closeHowTo(router),
-            searchValue: storeSearchValue
+            iconSelected: staticHistory,
+            showPanel: true,
+            searchValue: staticHistory.name || ''
           }
         } else {
+          router.push('/', undefined, { scroll: false })
           return {
             tab: e,
-            animatedHistory: iconSelected,
-            iconsSelected: staticHistory,
-            showPanel: true
+            ...iconSetHelper.closeHowTo(router)
           }
         }
       } else {
-        if (animatedHistory === '') {
-          const storeSearchValue = searchValue
+        if (
+          JSON.stringify(animatedHistory) !==
+          JSON.stringify({ name: '', tags: [] })
+        ) {
+          router.push(
+            {
+              query: { iconName: animatedHistory.name, type: 'animated' }
+            },
+            undefined,
+            { scroll: false }
+          )
           return {
             tab: e,
-            staticHistory: iconSelected,
-            ...iconSetHelper.closeHowTo(router),
-            searchValue: storeSearchValue
+            iconSelected: animatedHistory,
+            showPanel: true,
+            searchValue: animatedHistory.name || ''
           }
         } else {
+          router.push('/', undefined, { scroll: false })
           return {
             tab: e,
-            staticHistory: iconSelected,
-            iconsSelected: animatedHistory,
-            showPanel: true
+            ...iconSetHelper.closeHowTo(router)
           }
         }
       }
     }
-    return { iconsSelected: iconSelected }
   },
 
   getWords: (values: string) => {
