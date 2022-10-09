@@ -45,9 +45,9 @@
     .eos-icons-outlined,
     img {
       border: 2px solid $white;
-      height: 32px;
+      height: 32px !important;
       margin: 10px;
-      padding: 10px;
+      padding: 10px !important;
       text-align: center;
       width: 32px;
     }
