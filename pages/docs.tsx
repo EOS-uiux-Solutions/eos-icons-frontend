@@ -460,11 +460,13 @@ const Docs = () => {
                 manager tool provided by your operative system. For Macs, the
                 default tool is Font Book:
               </p>
-              <Image
-                src={FontbookImg}
-                alt='Animation displaying how to install the eos-icons font'
-                className='onyour-img-edit'
-              />
+              <div className='gif-container'>
+                <Image
+                  src={FontbookImg}
+                  alt='Animation displaying how to install the eos-icons font'
+                  className='onyour-img-edit'
+                />
+              </div>
               <h2>Using EOS icons in your favourite design tool</h2>
               <p>
                 Once you’ve installed the font, you’re ready to use EOS Icons in
@@ -474,11 +476,13 @@ const Docs = () => {
                 found &nbsp;
                 <Link href='../cheatsheet'>here</Link>.
               </p>
-              <Image
-                src={UsingIconsImg}
-                alt='Animation displaying how to use eos icons in design tool'
-                className='onyour-img-edit'
-              />
+              <div className='gif-container'>
+                <Image
+                  src={UsingIconsImg}
+                  alt='Animation displaying how to use eos icons in design tool'
+                  className='onyour-img-edit'
+                />
+              </div>
             </div>
           </label>
           <label htmlFor='React'>
@@ -1025,11 +1029,13 @@ export default {
                 Once you have installed the plugin, you can use the icons in
                 your Figma file. An example of usage is shown below{' '}
               </p>
-              <Image
-                src={EOSFigma}
-                alt='Animation displaying how to use eos icons in design tool'
-                className='onyour-img-edit'
-              />
+              <div className='gif-container'>
+                <Image
+                  src={EOSFigma}
+                  alt='Animation displaying how to use eos icons in design tool'
+                  className='onyour-img-edit'
+                />
+              </div>
               <h2>Default Icon Settings</h2>
               <table className='table'>
                 <thead>
@@ -1104,11 +1110,13 @@ export default {
                 Once you have installed the plugin, you can use the icons in
                 your Xd file. An example of usage is shown below{' '}
               </p>
-              <Image
-                src={EOSXd}
-                alt='Animation displaying how to use eos icons in design tool'
-                className='onyour-img-edit'
-              />
+              <div className='gif-container'>
+                <Image
+                  src={EOSXd}
+                  alt='Animation displaying how to use eos icons in design tool'
+                  className='onyour-img-edit'
+                />
+              </div>
               <h2>Default Icon Settings</h2>
               <table className='table'>
                 <thead>

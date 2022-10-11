@@ -75,7 +75,6 @@ If you'd like to add new icons, you'll need to head over to the [icons repositor
 
 - [Join us on Slack](https://slack.userstory.site)
 
-
 # Our "thank you" section
 
 ### Tested for every browser in every device
