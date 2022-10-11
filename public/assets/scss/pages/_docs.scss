@@ -7,8 +7,10 @@
     margin-top: 0.67em;
   }
 
-  img {
+  .gif-container {
     max-width: 619px;
+    z-index: -1;
+    position: relative;
   }
 
   .docs-header {
